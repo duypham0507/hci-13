@@ -1,0 +1,33 @@
+@import "src/app/core/scss/fuse";
+@import "src/app/main/main.component";
+
+.actions-list-students-dialog {
+    @include media-breakpoint('xs') {
+        width: 100%;
+    }
+
+
+    .mat-dialog-container {
+        padding: 0;
+    }
+
+    .example-full-width {
+        width: 100%;
+      }
+
+    .dialog-content-wrapper {
+        max-height: 90vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .primary-color-input,
+    .secondary-color-input {
+        padding: 6px 8px;
+    }
+
+    .mat-radio-group {
+        text-align: center;
+        padding-bottom: 1.25em;
+    }
+}

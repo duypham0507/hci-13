@@ -1,0 +1,9 @@
+// Import Fuse main library
+@import "app/core/scss/core";
+
+.btn-permission:disabled {
+    color: currentColor;
+    cursor: not-allowed;
+    opacity: 0.3;
+    text-decoration: none;
+}

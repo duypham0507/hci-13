@@ -1,0 +1,50 @@
+@import "src/app/core/scss/fuse";
+
+:host {
+    .vt-tree-title {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        background-color: white;
+        min-height: 64px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    }
+
+    .add-button {
+        width: 36px !important;
+        height: 36px !important;
+        font-size: 36px !important;
+    }
+
+    .nav-item {
+        // .btn-delete {
+        //     display: none;
+        // }
+
+        .hover-button-container {
+            display: none;
+        }
+
+        &:hover {
+            .hover-button-container {
+                display: flex;
+                position: relative;
+                margin-top: -36px;
+                right: 10px;
+                z-index: 999;
+                float: right;
+                cursor: pointer;
+            }
+            // .btn-delete {
+            //     display: flex;
+            //     position: relative;
+            //     top: -36px;
+            //     right: 10px;
+            //     z-index: 999;
+            //     float: right;
+            //     cursor: pointer;
+            //     height: 0;
+            // }
+        }
+    }
+}

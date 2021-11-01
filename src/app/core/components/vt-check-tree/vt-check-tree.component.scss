@@ -1,0 +1,12 @@
+@import "src/app/core/scss/fuse";
+
+:host {
+    .vt-tree-title {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        background-color: white;
+        min-height: 64px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    }
+}

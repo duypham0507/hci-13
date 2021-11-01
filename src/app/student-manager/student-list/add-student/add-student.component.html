@@ -1,0 +1,70 @@
+<div class="dialog-content-wrapper">
+    <mat-toolbar matDialogTitle class="mat-accent m-0">
+        <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+            <span class="title dialog-title">{{data.title | translate}}</span>
+            <button mat-button class="mat-icon-button" tabindex="-1" (click)="dialogRef.close()"
+                aria-label="Close dialog">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+    </mat-toolbar>
+
+    <div mat-dialog-content class="p-24 m-0" fusePerfectScrollbar style="width: 600px">
+        <form class="event-form w-100-p" fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto" name="form"
+            [formGroup]="form">
+            <div fxLayout="row">
+                <mat-form-field fxFlex="100%">
+                    <mat-label>Tên sinh viên</mat-label>
+                    <input matInput tabindex="1" required name="name" formControlName="name" [(ngModel)]="item.name"
+                        trim="blur" placeholder="Tên sinh viêns" />
+
+                </mat-form-field>
+
+            </div>
+
+            <div fxLayout="row">
+                <mat-form-field fxFlex="100%">
+                    <mat-label>Mã số sinh viên</mat-label>
+                    <input matInput tabindex="1" name="studentsCode" formControlName="studentsCode" [(ngModel)]="item.studentsCode"
+                        trim="blur" placeholder="Mã số sinh viên" />
+
+                </mat-form-field>
+
+            </div>
+
+            <div fxLayout="row">
+                <mat-form-field fxFlex="100%">
+                    <mat-label>Ngày sinh</mat-label>
+                    <input matInput tabindex="2" name="dateOfBirth" formControlName="dateOfBirth" [(ngModel)]="item.dateOfBirth"
+                        trim="blur" placeholder="Ngày sinh" />
+
+                </mat-form-field>
+
+            </div>
+
+            <div fxLayout="row">
+                <mat-form-field fxFlex="100%">
+                    <mat-label>Mã lớp</mat-label>
+                    <input rows="3" matInput tabindex="4" required name="className" formControlName="className" [(ngModel)]="item.className"
+                        trim="blur" placeholder="Mã lớp" />
+
+                </mat-form-field>
+
+            </div>
+            <!-- <div fxLayout="row">
+                <mat-radio-group aria-label="Select an option" fxFlex="100%">
+                    <mat-radio-button value="1">Option 1</mat-radio-button>
+                    <mat-radio-button value="2">Option 2</mat-radio-button>
+                    <mat-radio-button value="3">Option 3</mat-radio-button>
+                  </mat-radio-group>
+
+            </div> -->
+        </form>
+    </div>
+    <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="center">
+        <button mat-button (click)="save()" tabindex="7" class="mat-raised-button mat-accent"
+            color="accent">{{'Common.Save' | translate}}</button>
+        <button mat-button (click)="cancel()" tabindex="8" class="mat-raised-button mat-warn"
+            color="warn">{{'Common.Cancel' | translate}}</button>
+    </div>
+</div>

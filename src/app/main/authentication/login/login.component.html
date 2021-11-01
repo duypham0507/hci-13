@@ -1,0 +1,83 @@
+<div id="login" fxLayout="row" fxLayoutAlign="start" >
+
+    <div id="login-intro" fxFlex fxHide fxShow.gt-xs>
+
+        <div class="description" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',y:'25px'}}">
+        </div>
+
+    </div>
+    <div class="bg-img">
+        <img src="../../../../assets/images/logos/ara-logo-bg-256.png" alt="">
+    </div>
+    <div id="login-form-wrapper" fusePerfectScrollbar *fuseIfOnDom
+        [@animate]="{value:'*',params:{delay:'300ms',x:'100%'}}">
+        <!-- <div class="login-logo">
+            <img style="width: 90%;margin: 10px;" src="../../../../assets/images/logos/aratech-logo-h-256.png" alt="">
+        </div> -->
+        <div id="login-form">
+
+            <div class="logo" fxHide.gt-xs>
+                <span>F</span>
+            </div>
+
+            <div class="title">Thông tin đăng nhập</div>
+
+            <form name="loginForm" [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
+
+                <mat-form-field>
+                    <input matInput placeholder="Tài khoản" formControlName="username">
+                    <mat-error *ngIf="loginFormErrors.username.required">
+                        Bạn phải nhập tài khoản
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput type="password" placeholder="Mật khẩu" formControlName="password">
+                    <mat-error *ngIf="loginFormErrors.password.required">
+                        Bạn phải nhập mật khẩu
+                    </mat-error>
+                </mat-form-field>
+
+                <div class="remember-forgot-password" fxLayout="row" fxLayout.xs="column"
+                    fxLayoutAlign="space-between center">
+                    <mat-checkbox class="remember-me" aria-label="Ghi nhớ đăng nhập" formControlName="saveLogin"
+                        [(ngModel)]="saveLogin">
+                        Ghi nhớ đăng nhập
+                    </mat-checkbox>
+
+                    <a class="forgot-password" [routerLink]="'/authentication/forgot-password'">
+                        Quên mật khẩu?
+                    </a>
+                </div>
+
+                <button type="submit" mat-raised-button color="accent" class="submit-button" aria-label="Đăng nhập"
+                    [disabled]="loginForm.invalid">
+                    Đăng nhập
+                </button>
+
+            </form>
+            <div class="form-control-feedback text-danger" *ngIf="errorMessage != ''">{{errorMessage}}</div>
+
+            <!--<div class="separator">
+                <span class="text">OR</span>
+            </div>
+
+            <div fxLayout="column" fxLayoutAlign="start center">
+
+                <button mat-raised-button class="google">
+                    Log in with Google
+                </button>
+
+                <button mat-raised-button class="facebook">
+                    Log in with Facebook
+                </button>
+
+            </div>
+
+            <div class="register" fxLayout="column" fxLayoutAlign="center center">
+                <span class="text">Don't have an account?</span>
+                <a class="link" [routerLink]="'/pages/auth/register-2'">Create an account</a>
+            </div>-->
+        </div>
+    </div>
+</div>

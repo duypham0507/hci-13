@@ -1,0 +1,103 @@
+<div class="page-layout carded fullwidth" fusePerfectScrollbar>
+    <div class="top-bg mat-accent-bg header-height"></div>
+
+    <div class="center">
+        <div class="header white-fg header-top" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="row"
+            fxLayoutAlign.gt-xs="space-between center">
+            <div class="logo my-12 m-sm-0" fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon class="logo-icon mr-16" *fuseIfOnDom
+                    [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">supervisor_account</mat-icon>
+                <span class="logo-text h1" *fuseIfOnDom
+                    [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Danh sách lớp sinh viên</span>
+            </div>
+
+            <div id="searchBox" class="search-input-wrapper mx-12 m-md-0" fxFlex="1 0 auto" fxLayout="row"
+                fxLayoutAlign="start center">
+                <div (click)="search()">
+                    <label for="search" class="mr-8">
+                        <mat-icon class="secondary-text">search</mat-icon>
+                    </label>
+                </div>
+                <mat-form-field floatPlaceholder="never" fxFlex="1 0 auto">
+                    <input id="search" matInput #filter trim="blur" placeholder="{{'Common.Search' | translate}}"
+                        [(ngModel)]="keyword">
+                </mat-form-field>
+
+            </div>
+            <!-- <button mat-raised-button class="add-product-button mat-white-bg my-12 mt-sm-0" (click)="add()">
+                <span>{{'Common.Add' | translate}}</span>
+            </button> -->
+        </div>
+
+        <div class="content mat-white-bg">
+            <mat-table class="detail-table" fxFlex #table [dataSource]="dataSource" matSort
+                [@animateStagger]="{value:'50'}" fusePerfectScrollbar>
+                <ng-container matColumnDef="id">
+                    <mat-header-cell *matHeaderCellDef>{{'Common.No' | translate}}</mat-header-cell>
+                    <mat-cell *matCellDef="let item; let i = index;">
+                        <p class="text-truncate mr-8">{{i + 1}}</p>
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="fistName">
+                    <mat-header-cell *matHeaderCellDef>Họ đệm</mat-header-cell>
+                    <mat-cell *matCellDef="let item">
+                        <p class="text-truncate mr-8" matTooltip="{{item.name}}">{{item.name}}</p>
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="lastName">
+                    <mat-header-cell *matHeaderCellDef>Tên</mat-header-cell>
+                    <mat-cell *matCellDef="let item">
+                        <p class="text-truncate mr-8" matTooltip="{{item.name}}">{{item.name}}</p>
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="studentsCode">
+                    <mat-header-cell *matHeaderCellDef>MSSV</mat-header-cell>
+                    <mat-cell *matCellDef="let item">
+                        <p class="text-truncate mr-8" matTooltip="{{item.studentsCode}}">{{item.studentsCode}}</p>
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="className">
+                    <mat-header-cell *matHeaderCellDef>Tên Lớp</mat-header-cell>
+                    <mat-cell *matCellDef="let item">
+                        <p class="text-truncate mr-8" matTooltip="{{item.className}}">{{item.className}}</p>
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="majoring">
+                    <mat-header-cell *matHeaderCellDef>Chuyên ngành</mat-header-cell>
+                    <mat-cell *matCellDef="let item">
+                        <p class="text-truncate mr-8" matTooltip="{{item.className}}">{{item.className}}</p>
+                    </mat-cell>
+                </ng-container>
+
+                <!-- <ng-container matColumnDef="status">
+                    <mat-header-cell *matHeaderCellDef>Trạng thái</mat-header-cell>
+                    <mat-cell *cdkCellDef="let item">
+                        <button *ngIf="item.status == true" class="btn-permission" matTooltip="Học">
+                            <mat-icon>check_circle</mat-icon>
+                        </button>
+                        <button *ngIf="item.status == false" class="btn-permission" matTooltip="Nghỉ">
+                            <mat-icon>remove_circle_outline</mat-icon>
+                        </button>
+
+                    </mat-cell>
+                </ng-container> -->
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+                <mat-row *matRowDef="let item; columns: displayedColumns;" class="item" [routerLink]="" (click)="edit(item)">
+                </mat-row>
+
+            </mat-table>
+            <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+            </mat-paginator> -->
+            <!-- <mat-paginator #paginator [length]="length" [pageSize]="pageSize" [pageIndex]="pageIndex" [pageSizeOptions]="pageSizeOptions"
+                (page)="pageEvent($event)">
+            </mat-paginator> -->
+        </div>
+    </div>
+</div>
