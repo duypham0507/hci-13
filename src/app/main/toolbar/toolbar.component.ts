@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { FuseConfigService } from '../../core/services/config.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -14,14 +14,14 @@ import { StudentService } from 'app/student-manager/service/student.service';
     styleUrls: ['./toolbar.component.scss']
 })
 
-export class FuseToolbarComponent {
+export class FuseToolbarComponent implements OnInit{
     userStatusOptions: any[];
     languages: any;
     selectedLanguage: any;
     showLoadingBar: boolean;
     showWaitingBar: boolean;
     horizontalNav: boolean;
-    user: User;
+    user: any = {};
 
     constructor(
         private router: Router,
@@ -97,11 +97,17 @@ export class FuseToolbarComponent {
             this.horizontalNav = settings.layout.navigation === 'top';
         });
         // this.user = this.authServ.getCurrentUser();
+
+    }
+
+    ngOnInit()
+    {
         this.service.GetList().subscribe(info => {
             info.forEach(item => {
                 let usr = localStorage.getItem("tnthvn_usr")
-                if(item.username == usr) {
-                    this.user = item;
+                if(item.username === usr) {
+                    this.user.name = item.name;
+                    console.log(this.user)
                 }
             })
         })
@@ -121,7 +127,8 @@ export class FuseToolbarComponent {
     }
 
     logout() {
-        this.authServ.logout();
+        localStorage.removeItem("tnthvn_usr");
+        localStorage.removeItem("tnthvn_pws");
         this.router.navigate([
             Constants.Router_Login
         ]);

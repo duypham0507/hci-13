@@ -12,7 +12,7 @@ export class AuthGuard implements CanActivate {
 
     async canActivate() {
         try {
-            const x = await this.authenService;
+            const x = await localStorage.getItem("tnthvn_usr")
             if (!x) {
                 this.router.navigate([
                     Constants.Router_Login
