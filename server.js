@@ -13,10 +13,10 @@ const forceSSL = function () {
     next();
   }
 };
-app.use(express.static('./dist/{{hci-13}}'));
+app.use(express.static('./dist/{{fuse}}'));
  
 app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname,'/dist/{{hci-13}}/index.html'));
+  res.sendFile(path.join(__dirname,'/dist/{{fuse}}/index.html'));
 });
  
 app.use(forceSSL());

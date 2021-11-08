@@ -5,6 +5,4 @@
 export const environment = {
     production: false,
     hmr: false,
-    ConfigFileUrl: 'assets/configs/config.json',
-    // ConfigFileUrl: 'assets/configs/config.local.json'
 };

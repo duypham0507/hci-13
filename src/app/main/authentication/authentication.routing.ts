@@ -8,10 +8,10 @@ import { FuseLogin2Component } from './login/login.component';
 // import { ActiveComponent } from "./active/active.component";
 
 export const AuthenticationRoutes: Routes = [
-    {
-        path: 'authentication/signin',
-        component: SigninComponent,
-    },
+    // {
+    //     path: 'authentication/signin',
+    //     component: SigninComponent,
+    // },
     {
         path: 'authentication/login',
         component: FuseLogin2Component

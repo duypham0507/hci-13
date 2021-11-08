@@ -4,7 +4,6 @@ import { FuseConfigService } from '../../core/services/config.service';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthenticationService } from '../../shared/services/AuthenticationService';
 import { Constants } from '../../shared/constants';
-import { User } from '../../shared/models/user.model';
 import { WaitingService } from '../../shared/services/waiting.service';
 import { StudentService } from 'app/student-manager/service/student.service';
 
@@ -106,7 +105,7 @@ export class FuseToolbarComponent implements OnInit{
             info.forEach(item => {
                 let usr = localStorage.getItem("tnthvn_usr")
                 if(item.username === usr) {
-                    this.user.name = item.name;
+                    this.user = item;
                     console.log(this.user)
                 }
             })

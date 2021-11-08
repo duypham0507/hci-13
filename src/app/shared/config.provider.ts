@@ -20,21 +20,4 @@ export class ConfigProvider {
         return this.config[key];
     }
 
-    load() {
-        return new Promise((resolve, reject) => {
-            this.http
-                .get(ConfigProvider._config.ConfigFileUrl)
-                .map(res => res
-                    
-                )
-                .subscribe(response => {
-                    this.config = response;
-                    resolve(true);
-                })
-        })
-    }
-}
-
-export function configProviderFactory(provider: ConfigProvider) {
-    return () => provider.load();
 }

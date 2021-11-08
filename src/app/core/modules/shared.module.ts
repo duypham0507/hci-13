@@ -24,8 +24,6 @@ import { CookieService } from 'ngx-cookie-service';
 import { TranslateModule } from '@ngx-translate/core';
 import { VtTreeComponent } from '../components/vt-tree/vt-tree.component';
 import { VtCheckTreeComponent } from '../components/vt-check-tree/vt-check-tree.component';
-import { InputTrimDirective } from '../../shared/directives/input-trim.directive';
-import { NumberDirective } from '../../shared/directives/numbers-only.directive';
 
 
 @NgModule({
@@ -40,8 +38,6 @@ import { NumberDirective } from '../../shared/directives/numbers-only.directive'
         FuseIfOnDomDirective,
         FusePerfectScrollbarDirective,
         FuseMaterialColorPickerComponent,
-        InputTrimDirective,
-        NumberDirective
     ],
     imports        : [
         FlexLayoutModule,
@@ -75,8 +71,6 @@ import { NumberDirective } from '../../shared/directives/numbers-only.directive'
         FuseIfOnDomDirective,
         FuseMaterialColorPickerComponent,
         TranslateModule,
-        InputTrimDirective,
-        NumberDirective
     ],
     entryComponents: [
         FuseConfirmDialogComponent

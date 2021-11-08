@@ -10,11 +10,11 @@ export const StudentManagerRoutes: Routes = [
     {
         path     : 'student-list',
         component: ListStudentComponent,
-        canActivate: [AuthGuard]
+        // canActivate: [AuthGuard]
     },
     {
         path     : 'subject-list',
         component: SubjectListComponent,
-        canActivate: [AuthGuard]
+        // canActivate: [AuthGuard]
     },
 ];

@@ -23,9 +23,9 @@ export class AppComponent implements OnInit
         private fuseSplashScreen: FuseSplashScreenService,
         private translate: TranslateService,
         private translationLoader: FuseTranslationLoaderService,
-        private configProvider: ConfigProvider)
+    )
     {
-        Constants.setConfig(this.configProvider.getAllConfig());
+        
         
         // Add languages
         this.translate.addLangs(['en', 'vi', 'tr']);

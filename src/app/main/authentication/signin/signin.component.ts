@@ -22,9 +22,7 @@ export class SigninComponent implements OnInit {
     , private authenService: AuthenticationService) { }
 
   ngOnInit() {
-    if (this.authenService.isLoggedIn()) {
-      this.router.navigate(['/']);
-    }
+    
 
     this.form = this.fb.group({
       uname: [null, Validators.compose([Validators.required])],
@@ -33,19 +31,7 @@ export class SigninComponent implements OnInit {
   }
 
   onSubmit() {
-    this.errorMessage = "";
-    if (this.username != '' && this.password != '') {
-      this.authenService.login(this.username, this.password).then(rs => {
-        if (rs) {
-          this.router.navigate(['/']);
-        } else {
-          this.errorMessage = "Đăng nhập thất bại, vui lòng kiểm tra tài khoản và mật khẩu.";
-        }
-      },
-        error => {
-          this.errorMessage = "Đăng nhập thất bại, vui lòng kiểm tra tài khoản và mật khẩu.";
-        });
-    }
+    
   }
 
 }

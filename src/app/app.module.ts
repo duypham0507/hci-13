@@ -18,7 +18,6 @@ import { Constants } from './shared/constants';
 import { AuthenticationService } from './shared/services/AuthenticationService';
 import { MatPaginatorIntlCro } from './shared/MatPaginatorIntlCro';
 import { WaitingService } from './shared/services/waiting.service';
-import { ConfigProvider, configProviderFactory } from './shared/config.provider';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { AuthGuard } from './shared/auth.guard';
@@ -58,8 +57,6 @@ import { StudentManagerModule } from './student-manager/student-manager.module';
         FuseNavigationService,
         AuthenticationService,
         WaitingService,
-        ConfigProvider, 
-        { provide: APP_INITIALIZER, useFactory: configProviderFactory, deps: [ConfigProvider], multi: true },
         AuthGuard
     ],
     bootstrap   : [

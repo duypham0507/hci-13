@@ -5,5 +5,4 @@
 export const environment = {
     production: false,
     hmr: false,
-    ConfigFileUrl: 'assets/configs/config.prod.json'
 };
