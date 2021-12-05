@@ -14,6 +14,10 @@
         height: 45px !important;
     }
 
+    .mat-menu{
+        left: 1161.61px !important;
+    }
+
     .mat-toolbar {
         background: inherit;
         color: inherit;
@@ -36,6 +40,16 @@
             width: 38px;
         }
     }
+
+    .username{
+        height: 16px;
+    }
+
+    .role {
+        font-size: 12px;
+        font-weight: 300;
+    }
+
 
     .user-button,
     fuse-search-bar,

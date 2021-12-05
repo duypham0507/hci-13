@@ -106,7 +106,6 @@ export class FuseToolbarComponent implements OnInit{
                 let usr = localStorage.getItem("tnthvn_usr")
                 if(item.username === usr) {
                     this.user = item;
-                    console.log(this.user)
                 }
             })
         })

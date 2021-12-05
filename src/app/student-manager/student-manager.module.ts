@@ -12,11 +12,12 @@ import { ListStudentComponent } from './student-list/list-student.component';
 import { AddStudentComponent } from './student-list/add-student/add-student.component';
 import { AuthGuard } from 'app/shared/auth.guard';
 import { AuthenticationService } from 'app/shared/services/AuthenticationService';
+import { SubjectSubscribeComponent } from './subject-subscribe/subject-subscribe.component';
 
 
 
 @NgModule({
-    declarations: [ListStudentComponent, SubjectListComponent, AddStudentComponent],
+    declarations: [ListStudentComponent, SubjectListComponent, AddStudentComponent, SubjectSubscribeComponent],
     imports: [
         CommonModule,
         SharedModule,

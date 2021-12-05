@@ -40,7 +40,7 @@ export class FuseNavigationComponent implements OnDestroy, OnInit
 
     ngOnInit() {
         //if (this.module == 'public') {
-            this.fuseNavigationService.setNavigationModel(FuseNavigationModel.getPublicModel());
+            // this.fuseNavigationService.setNavigationModel(FuseNavigationModel.getPublicModel());
         // } else {
         //     this.functionService.getMyMenu().then(rs => {
         //         this.fuseNavigationService.setNavigationModel(new FuseNavigationModel(rs));

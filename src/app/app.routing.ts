@@ -9,8 +9,12 @@ export const AppRoutes: Routes = [
         // loadChildren: './main/authentication/authentication.module#AuthenticationModule'
     },
     {
+        path        : 'information',
+        loadChildren: () => import('./information/information.module').then(m => m.InformationModule)
+    },
+    {
         path        : 'student-manager',
-        loadChildren: './student-manager/student-manager.module#StudentManagerModule',
+        loadChildren: () => import('./student-manager/student-manager.module').then(m => m.StudentManagerModule)
     },
     {
         path: 'authentication',

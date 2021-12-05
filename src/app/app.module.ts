@@ -23,6 +23,7 @@ import { MatPaginatorIntl } from '@angular/material/paginator';
 import { AuthGuard } from './shared/auth.guard';
 import { ListStudentComponent } from './student-manager/student-list/list-student.component';
 import { StudentManagerModule } from './student-manager/student-manager.module';
+import { InformationModule } from './information/information.module';
 
 
 
@@ -31,11 +32,6 @@ import { StudentManagerModule } from './student-manager/student-manager.module';
 @NgModule({
     declarations: [
         AppComponent,
-        
-        
-       
-       
-        //SigninComponent
     ],
     imports     : [
         BrowserModule,
@@ -48,7 +44,8 @@ import { StudentManagerModule } from './student-manager/student-manager.module';
         FuseSampleModule,
         AuthenticationModule,
         MatInputModule,
-        StudentManagerModule
+        StudentManagerModule,
+        InformationModule
     ],
     providers   : [
         { provide: MatPaginatorIntl, useClass: MatPaginatorIntlCro},

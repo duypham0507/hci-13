@@ -17,7 +17,9 @@ import { AddStudentComponent } from './add-student/add-student.component';
 })
 export class ListStudentComponent implements OnInit {
     keyword: string;
-    displayedColumns = ["id", "fistName", "lastName", "studentsCode", "className", "majoring"];
+    isAdmin: boolean = false;
+    displayedColumns = [];
+    length: number = 0;
     dataSource: MatTableDataSource<any>;
     // @ViewChild(MatPaginator) paginator: MatPaginator;
     constructor(
@@ -36,7 +38,19 @@ export class ListStudentComponent implements OnInit {
     // }
 
     fetch() {
+        let usr = localStorage.getItem("tnthvn_usr")
         this.service.GetList().subscribe((rs) => {
+            rs.forEach(item => {
+                if(item.username === usr) {
+                    this.isAdmin = item.isAdmin
+                }
+                if(this.isAdmin == true) {
+                    this.displayedColumns = ["id", "fistName", "lastName", "studentsCode", "className", "majoring", "actions"];
+                } else {
+                    this.displayedColumns = ["id", "fistName", "lastName", "studentsCode", "className", "majoring"];
+                }
+            })
+            this.length = rs.length;
             this.dataSource = rs;
         });
     }

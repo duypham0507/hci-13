@@ -10,6 +10,32 @@ export class FuseNavigationModel implements FuseNavigationModelInterface
         this.model = [
             {
                 'id'      : 'applications',
+                'translate': 'Thông tin',
+                'type'    : 'group',
+                'children': [{
+                    'id'   : 'user',
+                    'translate': 'Thông tin cá nhân',
+                    'icon': 'supervisor_account',
+                    'type' : 'item',
+                    'url'  : '/information/student-info'
+                },
+                {
+                    'id'   : 'menu',
+                    'translate': 'Thông tin chức năng',
+                    'type' : 'item',
+                    'icon': 'apps',
+                    'url'  : '/information/system-info'
+                },
+                {
+                    'id'   : 'menu',
+                    'translate': 'Học phần đã đăng kí',
+                    'type' : 'item',
+                    'icon': 'apps',
+                    'url'  : '/information/subject-join'
+                }]
+            },
+            {
+                'id'      : 'applications',
                 'translate': 'NAV.System',
                 'type'    : 'group',
                 'children': [{
@@ -21,30 +47,20 @@ export class FuseNavigationModel implements FuseNavigationModelInterface
                 },
                 {
                     'id'   : 'menu',
-                    'translate': 'Danh sách môn học',
+                    'translate': 'Danh mục học phần',
                     'type' : 'item',
                     'icon': 'apps',
                     'url'  : '/student-manager/subject-list'
                 },
-                ]
+                {
+                    'id'   : 'menu',
+                    'translate': 'Đăng kí học phần',
+                    'type' : 'item',
+                    'icon': 'apps',
+                    'url'  : '/student-manager/subject-subscribe'
+                },]
             },
         ];
     }
-    public static getPublicModel(): FuseNavigationModel {
-        return new FuseNavigationModel(FuseNavigationModel.publicModel);
-    }
-
-    private static publicModel = [
-        {
-            'id'      : 'applications',
-            'translate': 'NAV.APPLICATIONS',
-            'type'    : 'group',
-            'children': [{
-                'id'   : 'intro',
-                'translate': 'User.Title',
-                'type' : 'item',
-                'url'  : '/admin/user-manager'
-            }]
-        }
-    ];
+    
 }
