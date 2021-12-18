@@ -7,27 +7,26 @@
             <div class="logo my-12 m-sm-0" fxLayout="row" fxLayoutAlign="start center">
                 <mat-icon class="logo-icon mr-16" *fuseIfOnDom
                     [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">supervisor_account</mat-icon>
-                <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Danh
-                    sách môn học</span>
+                <span class="logo-text h1" *fuseIfOnDom
+                    [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Danh sách lớp sinh viên</span>
             </div>
 
             <div id="searchBox" class="search-input-wrapper mx-12 m-md-0" fxFlex="1 0 auto" fxLayout="row"
                 fxLayoutAlign="start center">
-                <div (click)="search()">
+                <div>
                     <label for="search" class="mr-8">
                         <mat-icon class="secondary-text">search</mat-icon>
                     </label>
                 </div>
                 <mat-form-field floatPlaceholder="never" fxFlex="1 0 auto">
                     <input id="search" matInput #filter trim="blur" placeholder="{{'Common.Search' | translate}}"
-                        [(ngModel)]="keyword">
+                        [(ngModel)]="keyword" (keypress)="search()">
                 </mat-form-field>
 
             </div>
-
-            <button mat-raised-button class="add-product-button mat-white-bg my-12 mt-sm-0" (click)="add()">
+            <!-- <button mat-raised-button class="add-product-button mat-white-bg my-12 mt-sm-0" (click)="add()">
                 <span>{{'Common.Add' | translate}}</span>
-            </button>
+            </button> -->
         </div>
 
         <div class="content mat-white-bg">
@@ -40,67 +39,63 @@
                     </mat-cell>
                 </ng-container>
 
-                <ng-container matColumnDef="subjectCode">
-                    <mat-header-cell *matHeaderCellDef>Mã học phần</mat-header-cell>
+                <ng-container matColumnDef="fistName">
+                    <mat-header-cell *matHeaderCellDef>Họ Tên</mat-header-cell>
                     <mat-cell *matCellDef="let item">
-                        <p class="text-truncate mr-8" matTooltip="{{item.subjectCode}}">{{item.subjectCode}}</p>
+                        <p class="text-truncate mr-8" matTooltip="{{item.name}}">{{item.name}}</p>
                     </mat-cell>
                 </ng-container>
 
-                <ng-container matColumnDef="subjectName">
-                    <mat-header-cell *matHeaderCellDef>Tên học phần</mat-header-cell>
+                <!-- <ng-container matColumnDef="lastName">
+                    <mat-header-cell *matHeaderCellDef>Tên</mat-header-cell>
                     <mat-cell *matCellDef="let item">
-                        <p class="text-truncate mr-8" matTooltip="{{item.subjectName}}">{{item.subjectName}}</p>
+                        <p class="text-truncate mr-8" matTooltip="{{item.name}}">{{item.name}}</p>
                     </mat-cell>
-                </ng-container>
+                </ng-container> -->
 
-                <ng-container matColumnDef="timeLearn">
-                    <mat-header-cell *matHeaderCellDef>Thời lượng</mat-header-cell>
+                <ng-container matColumnDef="studentsCode">
+                    <mat-header-cell *matHeaderCellDef>MSSV</mat-header-cell>
                     <mat-cell *matCellDef="let item">
-                        <p class="text-truncate mr-8" matTooltip="{{item.timeLearn}}">{{item.timeLearn}}</p>
+                        <p class="text-truncate mr-8" matTooltip="{{item.studentsCode}}">{{item.studentsCode}}</p>
                     </mat-cell>
                 </ng-container>
 
-                <ng-container matColumnDef="numberCredit">
-                    <mat-header-cell *matHeaderCellDef>Số tín chỉ</mat-header-cell>
-                    <mat-cell *cdkCellDef="let item">
-                        <mat-cell *matCellDef="let item">
-                            <p class="text-truncate mr-8" matTooltip="{{item.className}}">{{item.className}}</p>
-                        </mat-cell>
-                    </mat-cell>
-                </ng-container>
-
-                <ng-container matColumnDef="tuitionCredit">
-                    <mat-header-cell *matHeaderCellDef>TC học phí</mat-header-cell>
-                    <mat-cell *cdkCellDef="let item">
-                        <mat-cell *matCellDef="let item">
-                            <p class="text-truncate mr-8" matTooltip="{{item.className}}">{{item.className}}</p>
-                        </mat-cell>
-                    </mat-cell>
-                </ng-container>
-
-                <ng-container matColumnDef="managementInstitute">
-                    <mat-header-cell *matHeaderCellDef>Viện quản lí</mat-header-cell>
-                    <mat-cell *cdkCellDef="let item">
-                        <mat-cell *matCellDef="let item">
-                            <p class="text-truncate mr-8" matTooltip="{{item.className}}">{{item.className}}</p>
-                        </mat-cell>
-                    </mat-cell>
-                </ng-container>
-
-                <ng-container matColumnDef="nameEnglish">
-                    <mat-header-cell *matHeaderCellDef>Tên tiếng anh</mat-header-cell>
-                    <mat-cell *cdkCellDef="let item">
-                        <mat-cell *matCellDef="let item">
-                            <p class="text-truncate mr-8" matTooltip="{{item.className}}">{{item.className}}</p>
-                        </mat-cell>
-                    </mat-cell>
-                </ng-container>
-
-                <ng-container cdkColumnDef="weight">
-                    <mat-header-cell *matHeaderCellDef>Trọng số</mat-header-cell>
+                <ng-container matColumnDef="className">
+                    <mat-header-cell *matHeaderCellDef>Tên Lớp</mat-header-cell>
                     <mat-cell *matCellDef="let item">
                         <p class="text-truncate mr-8" matTooltip="{{item.className}}">{{item.className}}</p>
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="majoring">
+                    <mat-header-cell *matHeaderCellDef>Chuyên ngành</mat-header-cell>
+                    <mat-cell *matCellDef="let item">
+                        <p class="text-truncate mr-8" matTooltip="{{item.className}}">{{item.className}}</p>
+                    </mat-cell>
+                </ng-container>
+
+                <!-- <ng-container matColumnDef="status">
+                    <mat-header-cell *matHeaderCellDef>Trạng thái</mat-header-cell>
+                    <mat-cell *cdkCellDef="let item">
+                        <button *ngIf="item.status == true" class="btn-permission" matTooltip="Học">
+                            <mat-icon>check_circle</mat-icon>
+                        </button>
+                        <button *ngIf="item.status == false" class="btn-permission" matTooltip="Nghỉ">
+                            <mat-icon>remove_circle_outline</mat-icon>
+                        </button>
+
+                    </mat-cell>
+                </ng-container> -->
+                <ng-container matColumnDef="actions" *ngIf="isAdmin">
+                    <mat-header-cell *matHeaderCellDef>Hành động</mat-header-cell>
+                    <mat-cell *matCellDef="let item">
+                        <button matTooltip="Sửa thông tin" class="btn-permission" (click)="edit(item)">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button matTooltip="Thu hồi" class="btn-permission" (click)="delete(item)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+
                     </mat-cell>
                 </ng-container>
 
@@ -110,9 +105,8 @@
                 </mat-row>
 
             </mat-table>
-            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
-                aria-label="Select page of periodic elements">
-            </mat-paginator>
+            <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]" [length]="length" showFirstLastButtons aria-label="Select page of periodic elements">
+            </mat-paginator> -->
             <!-- <mat-paginator #paginator [length]="length" [pageSize]="pageSize" [pageIndex]="pageIndex" [pageSizeOptions]="pageSizeOptions"
                 (page)="pageEvent($event)">
             </mat-paginator> -->

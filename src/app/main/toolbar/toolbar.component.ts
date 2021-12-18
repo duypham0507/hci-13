@@ -64,16 +64,16 @@ export class FuseToolbarComponent implements OnInit{
                 'title': 'Tiếng Việt',
                 'flag': 'vi'
             },
-            {
-                'id': 'en',
-                'title': 'English',
-                'flag': 'us'
-            },
-            {
-                'id': 'tr',
-                'title': 'Turkish',
-                'flag': 'tr'
-            }
+            // {
+            //     'id': 'en',
+            //     'title': 'English',
+            //     'flag': 'us'
+            // },
+            // {
+            //     'id': 'tr',
+            //     'title': 'Turkish',
+            //     'flag': 'tr'
+            // }
         ];
 
         this.selectedLanguage = this.languages[0];
