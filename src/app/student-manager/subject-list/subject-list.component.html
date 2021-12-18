@@ -65,7 +65,7 @@
                     <mat-header-cell *matHeaderCellDef>Số tín chỉ</mat-header-cell>
                     <mat-cell *cdkCellDef="let item">
                         <mat-cell *matCellDef="let item">
-                            <p class="text-truncate mr-8" matTooltip="{{item.className}}">{{item.className}}</p>
+                            <p class="text-truncate mr-8" matTooltip="{{item.numberCredit}}">{{item.numberCredit}}</p>
                         </mat-cell>
                     </mat-cell>
                 </ng-container>
@@ -74,7 +74,7 @@
                     <mat-header-cell *matHeaderCellDef>TC học phí</mat-header-cell>
                     <mat-cell *cdkCellDef="let item">
                         <mat-cell *matCellDef="let item">
-                            <p class="text-truncate mr-8" matTooltip="{{item.className}}">{{item.className}}</p>
+                            <p class="text-truncate mr-8" matTooltip="{{item.tuitionCredit}}">{{item.tuitionCredit}}</p>
                         </mat-cell>
                     </mat-cell>
                 </ng-container>
@@ -83,7 +83,7 @@
                     <mat-header-cell *matHeaderCellDef>Viện quản lí</mat-header-cell>
                     <mat-cell *cdkCellDef="let item">
                         <mat-cell *matCellDef="let item">
-                            <p class="text-truncate mr-8" matTooltip="{{item.className}}">{{item.className}}</p>
+                            <p class="text-truncate mr-8" matTooltip="{{item.managementInstitute}}">{{item.managementInstitute}}</p>
                         </mat-cell>
                     </mat-cell>
                 </ng-container>
@@ -92,7 +92,7 @@
                     <mat-header-cell *matHeaderCellDef>Tên tiếng anh</mat-header-cell>
                     <mat-cell *cdkCellDef="let item">
                         <mat-cell *matCellDef="let item">
-                            <p class="text-truncate mr-8" matTooltip="{{item.className}}">{{item.className}}</p>
+                            <p class="text-truncate mr-8" matTooltip="{{item.nameEnglish}}">{{item.nameEnglish}}</p>
                         </mat-cell>
                     </mat-cell>
                 </ng-container>
@@ -100,7 +100,7 @@
                 <ng-container cdkColumnDef="weight">
                     <mat-header-cell *matHeaderCellDef>Trọng số</mat-header-cell>
                     <mat-cell *matCellDef="let item">
-                        <p class="text-truncate mr-8" matTooltip="{{item.className}}">{{item.className}}</p>
+                        <p class="text-truncate mr-8" matTooltip="{{item.weight}}">{{item.weight}}</p>
                     </mat-cell>
                 </ng-container>
 
