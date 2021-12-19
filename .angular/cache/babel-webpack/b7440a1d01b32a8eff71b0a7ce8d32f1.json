@@ -1,0 +1,1 @@
+{"ast":null,"code":"export const locale = {\n  lang: 'tr',\n  data: {\n    'NAV': {\n      'APPLICATIONS': 'Programlar',\n      'SAMPLE': {\n        'TITLE': 'Örnek',\n        'BADGE': '15'\n      }\n    }\n  }\n};","map":null,"metadata":{},"sourceType":"module"}

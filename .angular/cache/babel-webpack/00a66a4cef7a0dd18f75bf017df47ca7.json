@@ -1,0 +1,1 @@
+{"ast":null,"code":"export const locale = {\n  lang: 'vi',\n  data: {\n    'SAMPLE': {\n      'HELLO': 'Hello, các cụ!'\n    }\n  }\n};","map":null,"metadata":{},"sourceType":"module"}

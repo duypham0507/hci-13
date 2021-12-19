@@ -1,0 +1,1 @@
+{"ast":null,"code":"export const locale = {\n  lang: 'en',\n  data: {\n    'NAV': {\n      'APPLICATIONS': 'Applications',\n      'SAMPLE': {\n        'TITLE': 'Sample',\n        'BADGE': '25'\n      }\n    }\n  }\n};","map":null,"metadata":{},"sourceType":"module"}

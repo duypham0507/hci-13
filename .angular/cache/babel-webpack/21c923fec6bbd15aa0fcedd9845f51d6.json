@@ -1,0 +1,1 @@
+{"ast":null,"code":"export const locale = {\n  lang: 'tr',\n  data: {\n    'SAMPLE': {\n      'HELLO': 'Merhaba Dünya!'\n    }\n  }\n};","map":null,"metadata":{},"sourceType":"module"}
