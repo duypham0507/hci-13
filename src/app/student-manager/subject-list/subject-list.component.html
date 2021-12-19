@@ -39,55 +39,64 @@
                     </mat-cell>
                 </ng-container>
 
-                <ng-container matColumnDef="fistName">
-                    <mat-header-cell *matHeaderCellDef>Họ Tên</mat-header-cell>
+                <ng-container matColumnDef="subjectCode">
+                    <mat-header-cell *matHeaderCellDef>Mã học phần</mat-header-cell>
                     <mat-cell *matCellDef="let item">
-                        <p class="text-truncate mr-8" matTooltip="{{item.name}}">{{item.name}}</p>
+                        <p class="text-truncate mr-8" matTooltip="{{item.subjectCode}}">{{item.subjectCode}}</p>
                     </mat-cell>
                 </ng-container>
 
-                <!-- <ng-container matColumnDef="lastName">
-                    <mat-header-cell *matHeaderCellDef>Tên</mat-header-cell>
+                <ng-container matColumnDef="subjectName">
+                    <mat-header-cell *matHeaderCellDef>Tên học phần</mat-header-cell>
                     <mat-cell *matCellDef="let item">
-                        <p class="text-truncate mr-8" matTooltip="{{item.name}}">{{item.name}}</p>
-                    </mat-cell>
-                </ng-container> -->
-
-                <ng-container matColumnDef="studentsCode">
-                    <mat-header-cell *matHeaderCellDef>MSSV</mat-header-cell>
-                    <mat-cell *matCellDef="let item">
-                        <p class="text-truncate mr-8" matTooltip="{{item.studentsCode}}">{{item.studentsCode}}</p>
+                        <p class="text-truncate mr-8" matTooltip="{{item.subjectName}}">{{item.subjectName}}</p>
                     </mat-cell>
                 </ng-container>
 
-                <ng-container matColumnDef="className">
-                    <mat-header-cell *matHeaderCellDef>Tên Lớp</mat-header-cell>
+                <ng-container matColumnDef="timeLearn">
+                    <mat-header-cell *matHeaderCellDef>Thời lượng</mat-header-cell>
                     <mat-cell *matCellDef="let item">
-                        <p class="text-truncate mr-8" matTooltip="{{item.className}}">{{item.className}}</p>
+                        <p class="text-truncate mr-8" matTooltip="{{item.timeLearn}}">{{item.timeLearn}}</p>
                     </mat-cell>
                 </ng-container>
 
-                <ng-container matColumnDef="majoring">
-                    <mat-header-cell *matHeaderCellDef>Chuyên ngành</mat-header-cell>
+                <ng-container matColumnDef="numberCredit">
+                    <mat-header-cell *matHeaderCellDef>Số tín chỉ</mat-header-cell>
                     <mat-cell *matCellDef="let item">
-                        <p class="text-truncate mr-8" matTooltip="{{item.className}}">{{item.className}}</p>
+                        <p class="text-truncate mr-8" matTooltip="{{item.numberCredit}}">{{item.numberCredit}}</p>
                     </mat-cell>
                 </ng-container>
 
-                <!-- <ng-container matColumnDef="status">
-                    <mat-header-cell *matHeaderCellDef>Trạng thái</mat-header-cell>
-                    <mat-cell *cdkCellDef="let item">
-                        <button *ngIf="item.status == true" class="btn-permission" matTooltip="Học">
-                            <mat-icon>check_circle</mat-icon>
-                        </button>
-                        <button *ngIf="item.status == false" class="btn-permission" matTooltip="Nghỉ">
-                            <mat-icon>remove_circle_outline</mat-icon>
-                        </button>
-
+                <ng-container matColumnDef="tuitionCredit">
+                    <mat-header-cell *matHeaderCellDef>TC học phí</mat-header-cell>
+                    <mat-cell *matCellDef="let item">
+                        <p class="text-truncate mr-8" matTooltip="{{item.tuitionCredit}}">{{item.tuitionCredit}}</p>
                     </mat-cell>
-                </ng-container> -->
-                <ng-container matColumnDef="actions" *ngIf="isAdmin">
-                    <mat-header-cell *matHeaderCellDef>Hành động</mat-header-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="managementInstitute">
+                    <mat-header-cell *matHeaderCellDef>Viện quản lí</mat-header-cell>
+                    <mat-cell *matCellDef="let item">
+                        <p class="text-truncate mr-8" matTooltip="{{item.managementInstitute}}">{{item.managementInstitute}}</p>
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="nameEnglish">
+                    <mat-header-cell *matHeaderCellDef>Tên tiếng anh</mat-header-cell>
+                    <mat-cell *matCellDef="let item">
+                        <p class="text-truncate mr-8" matTooltip="{{item.nameEnglish}}">{{item.nameEnglish}}</p>
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="weight">
+                    <mat-header-cell *matHeaderCellDef>Trọng số</mat-header-cell>
+                    <mat-cell *matCellDef="let item">
+                        <p class="text-truncate mr-8" matTooltip="{{item.weight}}">{{item.weight}}</p>
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="actions" *ngIf="isAdmin" fxLayoutAlign="center center">
+                    <mat-header-cell *matHeaderCellDef fxLayoutAlign="center center">Hành động</mat-header-cell>
                     <mat-cell *matCellDef="let item">
                         <button matTooltip="Sửa thông tin" class="btn-permission" (click)="edit(item)">
                             <mat-icon>edit</mat-icon>

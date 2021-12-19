@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { FuseConfirmDialogComponent } from '@fuse/components/confirm-dialog/confirm-dialog.component';
 import { TranslatePipe } from '@ngx-translate/core';
 import { fuseAnimations } from 'app/core/animations';
+import { StudentService } from '../service/student.service';
 import { SubjectService } from '../service/subject.service';
 import { AddSubjectComponent } from './add-subject/add-subject.component';
 
@@ -22,12 +23,26 @@ export class SubjectListComponent implements OnInit {
     // @ViewChild(MatPaginator) paginator: MatPaginator;
     constructor(
         private service: SubjectService,
+        private studentService: StudentService,
         public dialog: MatDialog,
         public snackBar: MatSnackBar,
         private translate: TranslatePipe
     ) { }
 
     ngOnInit(): void {
+         let usr = localStorage.getItem("tnthvn_usr")
+        this.studentService.GetList().subscribe((rs) => {
+            rs.forEach(item => {
+                if(item.username === usr) {
+                    this.isAdmin = item.isAdmin
+                }
+                if(this.isAdmin == true) {
+                    this.displayedColumns = ["id", "subjectCode", "subjectName", "timeLearn", "numberCredit", "tuitionCredit", "managementInstitute", "nameEnglish", "weight", "actions"];
+                } else {
+                    this.displayedColumns = ["id", "subjectCode", "subjectName", "timeLearn", "numberCredit", "tuitionCredit", "managementInstitute", "nameEnglish", "weight"];
+                }
+            })
+        });
         this.fetch();
     }
 
@@ -35,7 +50,7 @@ export class SubjectListComponent implements OnInit {
     //     this.dataSource.paginator = this.paginator;
     // }
 
-    fetch() {
+    fetch() {  
         this.service.GetList().subscribe((rs) => {
             this.dataSource = rs;
         });

@@ -33,27 +33,43 @@
                 min-height: 64px;
             }
 
+            .mat-header-cell {
+                padding-right: 0px !important;
+            }
+
+            padding-right: 24px;
+
             .mat-column-id {
                 flex: 0 1 80px;
             }
-
-            .mat-column-name {
-                flex: 0 1 300px;
+            .mat-column-subjectCode {
+                flex: 0 1 100px;
             }
-            .mat-column-studentsCode {
-                flex: 0 1 150px;
-            }
-            .mat-column-dateOfBirth {
+            .mat-column-subjectName {
                 flex: 0 1 200px;
             }
-            .mat-column-className {
+            .mat-column-timeLearn {
                 flex: 0 1 100px;
             }
-            .mat-column-status {
+            .mat-column-numberCredit {
+                flex: 0 1 80px;
+            }
+            .mat-column-tuitionCredit {
                 flex: 0 1 100px;
+            }
+            .mat-column-managementInstitute {
+                flex: 0 1 150px;
+            }
+            .mat-column-nameEnglish {
+                flex: 0 1 200px;
+            }
+            .mat-column-weight {
+                flex: 0 1 80px;
+                place-content: center;
             }
             .mat-column-actions {
                 flex: 0 1 80px;
+                place-content: center;
             }
         }
 
