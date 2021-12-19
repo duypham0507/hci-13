@@ -27,7 +27,7 @@ import { VtCheckTreeComponent } from '../components/vt-check-tree/vt-check-tree.
 
 
 @NgModule({
-    declarations   : [
+    declarations: [
         FuseMatSidenavHelperDirective,
         FuseMatSidenavTogglerDirective,
         FuseConfirmDialogComponent,
@@ -39,7 +39,7 @@ import { VtCheckTreeComponent } from '../components/vt-check-tree/vt-check-tree.
         FusePerfectScrollbarDirective,
         FuseMaterialColorPickerComponent,
     ],
-    imports        : [
+    imports: [
         FlexLayoutModule,
         MaterialModule,
         CommonModule,
@@ -51,7 +51,7 @@ import { VtCheckTreeComponent } from '../components/vt-check-tree/vt-check-tree.
         NgxDatatableModule,
         TranslateModule,
     ],
-    exports        : [
+    exports: [
         FlexLayoutModule,
         MaterialModule,
         CommonModule,
@@ -72,10 +72,7 @@ import { VtCheckTreeComponent } from '../components/vt-check-tree/vt-check-tree.
         FuseMaterialColorPickerComponent,
         TranslateModule,
     ],
-    entryComponents: [
-        FuseConfirmDialogComponent
-    ],
-    providers      : [
+    providers: [
         CookieService,
         FuseMatchMedia,
         FuseNavbarVerticalService,
