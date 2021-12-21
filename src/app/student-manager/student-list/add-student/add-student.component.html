@@ -34,8 +34,8 @@
 
             <div fxLayout="row">
                 <mat-form-field fxFlex="100%">
-                    <mat-label>Ngày sinh</mat-label>
-                    <input matInput tabindex="2" name="dateOfBirth" formControlName="dateOfBirth" [(ngModel)]="item.dateOfBirth"
+                    <mat-label>Chuyên ngành</mat-label>
+                    <input matInput tabindex="2" name="majoring" formControlName="majoring" [(ngModel)]="item.majoring"
                         trim="blur" placeholder="Ngày sinh" />
 
                 </mat-form-field>
@@ -44,7 +44,7 @@
 
             <div fxLayout="row">
                 <mat-form-field fxFlex="100%">
-                    <mat-label>Mã lớp</mat-label>
+                    <mat-label>Tên lớp</mat-label>
                     <input rows="3" matInput tabindex="4" required name="className" formControlName="className" [(ngModel)]="item.className"
                         trim="blur" placeholder="Mã lớp" />
 

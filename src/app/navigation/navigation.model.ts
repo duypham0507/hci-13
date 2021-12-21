@@ -26,13 +26,13 @@ export class FuseNavigationModel implements FuseNavigationModelInterface
                 //     'icon': 'apps',
                 //     'url'  : '/information/system-info'
                 // },
-                {
-                    'id'   : 'menu',
-                    'translate': 'Đăng kí học phần',
-                    'type' : 'playlist_add_check_circle',
-                    'icon': 'item',
-                    'url'  : '/student-manager/subject-subscribe'
-                },
+                // {
+                //     'id'   : 'menu',
+                //     'translate': 'Đăng kí học phần',
+                //     'type' : 'item',
+                //     'icon': 'apps',
+                //     'url'  : '/student-manager/subject-subscribe'
+                // },
                 
                 {
                     'id'   : 'menu',

@@ -25,9 +25,7 @@
 
             </div>
 
-            <!-- <button mat-raised-button class="add-product-button mat-white-bg my-12 mt-sm-0" (click)="add()">
-                <span>{{'Common.Add' | translate}}</span>
-            </button> -->
+        
         </div>
 
         <div class="content mat-white-bg">
@@ -55,14 +53,14 @@
                 </ng-container>
 
                 <ng-container matColumnDef="midScore">
-                    <mat-header-cell *matHeaderCellDef>Điểm quá trình</mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef>Mã lớp</mat-header-cell>
                     <mat-cell *matCellDef="let item">
                         <p class="text-truncate mr-8" matTooltip="{{item.className}}">{{item.className}}</p>
                     </mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="finalScore">
-                    <mat-header-cell *matHeaderCellDef>Điểm cuối kì</mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef>Số tín chỉ</mat-header-cell>
                     <mat-cell *cdkCellDef="let item">
                         <mat-cell *matCellDef="let item">
                             <p class="text-truncate mr-8" matTooltip="{{item.className}}">{{item.className}}</p>
@@ -71,7 +69,7 @@
                 </ng-container>
 
                 <ng-container matColumnDef="totalScore">
-                    <mat-header-cell *matHeaderCellDef>Tổng điểm</mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef>Hệ số</mat-header-cell>
                     <mat-cell *cdkCellDef="let item">
                         <mat-cell *matCellDef="let item">
                             <p class="text-truncate mr-8" matTooltip="{{item.className}}">{{item.className}}</p>
@@ -97,9 +95,7 @@
             <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
                 aria-label="Select page of periodic elements">
             </mat-paginator>
-            <!-- <mat-paginator #paginator [length]="length" [pageSize]="pageSize" [pageIndex]="pageIndex" [pageSizeOptions]="pageSizeOptions"
-                (page)="pageEvent($event)">
-            </mat-paginator> -->
+          
         </div>
     </div>
 </div>

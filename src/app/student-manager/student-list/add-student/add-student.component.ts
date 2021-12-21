@@ -19,7 +19,7 @@ export class AddStudentComponent implements OnInit {
 
     name: FormControl;
     studentsCode: FormControl;
-    dateOfBirth: FormControl;
+    majoring: FormControl;
     className: FormControl;
     status: FormControl;
 
@@ -34,7 +34,7 @@ export class AddStudentComponent implements OnInit {
         private formBuilder: FormBuilder
     ) {
         if (this.data.item) {
-            this.item = this.data.item;
+            this.item = Object.assign({}, data.item);
             this.isEdit = true;
         }
         else {
@@ -43,7 +43,7 @@ export class AddStudentComponent implements OnInit {
         this.formErrors = {
             name: {},
             studentsCode: {},
-            dateOfBirth: {},
+            majoring: {},
             className: {}, 
         };
      }
@@ -52,13 +52,13 @@ export class AddStudentComponent implements OnInit {
         this.form = this.formBuilder.group({
             name: new FormControl(this.item.name),
             studentsCode: new FormControl(this.item.studentsCode),
-            dateOfBirth: new FormControl(this.item.dateOfBirth),
+           majoring: new FormControl(this.item.majoring),
             className: new FormControl(this.item.className)
         });
         this.form = this.formBuilder.group({
             name: this.name,
             studentsCode: this.studentsCode,
-            dateOfBirth: this.dateOfBirth,
+            majoring: this.majoring,
             className: this.className,
         });
     }
