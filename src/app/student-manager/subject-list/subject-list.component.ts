@@ -18,7 +18,7 @@ import { AddSubjectComponent } from './add-subject/add-subject.component';
 export class SubjectListComponent implements OnInit {
     isAdmin : boolean = false;
     keyword: string;
-    displayedColumns = ["id", "subjectCode", "subjectName", "timeLearn", "numberCredit", "tuitionCredit", "managementInstitute", "nameEnglish", "weight"];
+    displayedColumns: any = [];
     dataSource: MatTableDataSource<any>;
     // @ViewChild(MatPaginator) paginator: MatPaginator;
     constructor(
@@ -58,7 +58,7 @@ export class SubjectListComponent implements OnInit {
 
     add() {
         let dialogRef = this.dialog.open(AddSubjectComponent, {
-            panelClass: "actions-list-students-dialog",
+            panelClass: "actions-list-subject-dialog",
             data: {
                 title: "Thêm sinh viên",
             },
@@ -73,7 +73,7 @@ export class SubjectListComponent implements OnInit {
 
     edit(item: any) {
         let dialogRef = this.dialog.open(AddSubjectComponent, {
-            panelClass: "actions-list-students-dialog",
+            panelClass: "actions-list-subject-dialog",
             data: {
                 item: item,
                 title: "Sửa thông tin sinh viên",

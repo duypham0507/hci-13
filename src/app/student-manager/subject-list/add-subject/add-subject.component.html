@@ -1,1 +1,86 @@
-<p>add-subject works!</p>
+<div class="dialog-content-wrapper">
+    <mat-toolbar matDialogTitle class="mat-accent m-0">
+        <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+            <span class="title dialog-title">{{data.title | translate}}</span>
+            <button mat-button class="mat-icon-button" tabindex="-1" (click)="dialogRef.close()"
+                aria-label="Close dialog">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+    </mat-toolbar>
+
+    <div mat-dialog-content class="p-24 m-0" fusePerfectScrollbar style="width: 600px">
+        <form class="event-form w-100-p" fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto" name="form"
+            [formGroup]="form">
+            <div fxLayout="row">
+                <mat-form-field fxFlex="48%">
+                    <mat-label>Mã học phần</mat-label>
+                    <input matInput tabindex="1" required name="subjectCode" formControlName="subjectCode" [(ngModel)]="item.subjectCode"
+                        trim="blur" placeholder="Mã học phần" />
+
+                </mat-form-field>
+                <div fxFlex="2%"></div>
+                <mat-form-field fxFlex="48%">
+                    <mat-label>Tên học phần</mat-label>
+                    <input matInput tabindex="1" required name="subjectName" formControlName="subjectName" [(ngModel)]="item.subjectName"
+                        trim="blur" placeholder="Tên học phần" />
+
+                </mat-form-field>
+            </div>
+
+            <div fxLayout="row">
+                <mat-form-field fxFlex="48%">
+                    <mat-label>Thời lượng</mat-label>
+                    <input matInput tabindex="1" name="timeLearn" formControlName="timeLearn" [(ngModel)]="item.timeLearn"
+                        trim="blur" placeholder="Thời lượng" />
+
+                </mat-form-field>
+                <div fxFlex="2%"></div>
+                <mat-form-field fxFlex="48%">
+                    <mat-label>Số tín chỉ</mat-label>
+                    <input matInput tabindex="1" required name="numberCredit" formControlName="numberCredit" [(ngModel)]="item.numberCredit"
+                        trim="blur" placeholder="Số tín chỉ" />
+
+                </mat-form-field>
+            </div>
+
+            <div fxLayout="row">
+                <mat-form-field fxFlex="48%">
+                    <mat-label>TC học phí</mat-label>
+                    <input matInput tabindex="2" name="tuitionCredit" formControlName="tuitionCredit" [(ngModel)]="item.tuitionCredit"
+                        trim="blur" placeholder="TC học phí" />
+
+                </mat-form-field>
+                <div fxFlex="2%"></div>
+                <mat-form-field fxFlex="48%">
+                    <mat-label>Viện quản lí</mat-label>
+                    <input matInput tabindex="1" required name="managementInstitute" formControlName="managementInstitute" [(ngModel)]="item.managementInstitute"
+                        trim="blur" placeholder="Viện quản lí" />
+
+                </mat-form-field>
+            </div>
+
+            <div fxLayout="row">
+                <mat-form-field fxFlex="48%">
+                    <mat-label>Tên tiếng anh</mat-label>
+                    <input rows="3" matInput tabindex="4" required name="nameEnglish" formControlName="nameEnglish" [(ngModel)]="item.nameEnglish"
+                        trim="blur" placeholder="Tên tiếng anh" />
+
+                </mat-form-field>
+                <div fxFlex="2%"></div>
+                <mat-form-field fxFlex="48%">
+                    <mat-label>Trọng số</mat-label>
+                    <input matInput tabindex="1" required name="weight" formControlName="weight" [(ngModel)]="item.weight"
+                        trim="blur" placeholder="Trọng số" />
+
+                </mat-form-field>
+            </div>
+        </form>
+    </div>
+    <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="center">
+        <button mat-button (click)="save()" tabindex="7" class="mat-raised-button mat-accent"
+            color="accent">{{'Common.Save' | translate}}</button>
+        <button mat-button (click)="cancel()" tabindex="8" class="mat-raised-button mat-warn"
+            color="warn">{{'Common.Cancel' | translate}}</button>
+    </div>
+</div>
