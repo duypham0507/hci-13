@@ -7,6 +7,7 @@ import { fuseAnimations } from 'app/core/animations';
 import { StudentService } from 'app/student-manager/service/student.service';
 import { SubjectJoinService } from '../service/subject-join.service';
 import { SubjectRegisterComponent } from './subject-register/subject-register.component';
+import { filter } from 'rxjs/operators';
 
 @Component({
     templateUrl: './subject-join.component.html',
@@ -43,7 +44,6 @@ export class SubjectJoinComponent implements OnInit {
 
     fetch(studentId?: any) { 
         this.service.GetList().subscribe((rs) => {
-            if(studentId == rs.studentId)
             this.dataSource = rs;
         });
     }
