@@ -4,6 +4,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { TranslatePipe } from '@ngx-translate/core';
 import { fuseAnimations } from 'app/core/animations';
+import { StudentService } from 'app/student-manager/service/student.service';
+import { SubjectJoinService } from '../service/subject-join.service';
 import { SubjectRegisterComponent } from './subject-register/subject-register.component';
 
 @Component({
@@ -14,19 +16,37 @@ import { SubjectRegisterComponent } from './subject-register/subject-register.co
 })
 export class SubjectJoinComponent implements OnInit {
     keyword: string;
-    displayedColumns = ["id", "subjectCode", "subjectName", "midScore", "finalScore", "totalScore", "status"];
+    displayedColumns = ["id", "subjectCode", "subjectName", "classcode", "numberCredit", "totalScore", "status"];
     dataSource: MatTableDataSource<any>;
     constructor(
+        private service: SubjectJoinService,
+        private studentService: StudentService,
         public dialog: MatDialog,
         public snackBar: MatSnackBar,
         private translate: TranslatePipe
-    ) { }
+    ) {
+
+     }
 
     ngOnInit(): void {
-        this.fetch();
+        let usr = localStorage.getItem("tnthvn_usr");
+        var studentId: any
+        this.studentService.GetList().subscribe((rs) => {
+            rs.forEach(item => {
+                if(item.username === usr) {
+                    studentId = item.id
+                }
+            })
+        });
+        this.fetch(studentId);
     }
 
-    fetch() { }
+    fetch(studentId?: any) { 
+        this.service.GetList().subscribe((rs) => {
+            if(studentId == rs.studentId)
+            this.dataSource = rs;
+        });
+    }
 
     add() {
         let dialogRef = this.dialog.open(SubjectRegisterComponent, {

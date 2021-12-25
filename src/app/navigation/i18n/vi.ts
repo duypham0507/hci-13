@@ -27,6 +27,7 @@ export const locale = {
             'UpdatedBy': 'Người sửa',
             'ModifiedAt': 'Ngày cập nhật',
             'Save': 'Lưu',
+            'Select': 'Chọn',
             'Cancel': 'Hủy',
             'Confirm': 'Xác nhận',
             'Status': 'Trạng thái',

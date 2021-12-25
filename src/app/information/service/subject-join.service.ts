@@ -13,6 +13,10 @@ export class SubjectJoinService {
         return this.http.get(this.subjectApi);
     }
 
+    GetSingle(id: number): Observable<any> {
+        return this.http.get(this.subjectApi + id);
+      }
+
     Search(keyword: string): Observable<any> {
         return this.http.get(this.subjectApi + "?search=" + keyword);
     }
