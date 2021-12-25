@@ -22,7 +22,9 @@
                     <input id="search" matInput #filter trim="blur" placeholder="{{'Common.Search' | translate}}"
                         [(ngModel)]="keyword">
                 </mat-form-field>
-
+                <button mat-raised-button class="add-product-button mat-white-bg my-12 mt-sm-0" (click)="add()">
+                    <span>{{'Common.Add' | translate}}</span>
+                </button>
             </div>
 
         

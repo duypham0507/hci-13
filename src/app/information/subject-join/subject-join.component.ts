@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { TranslatePipe } from '@ngx-translate/core';
 import { fuseAnimations } from 'app/core/animations';
+import { SubjectRegisterComponent } from './subject-register/subject-register.component';
 
 @Component({
     templateUrl: './subject-join.component.html',
@@ -26,4 +27,19 @@ export class SubjectJoinComponent implements OnInit {
     }
 
     fetch() { }
+
+    add() {
+        let dialogRef = this.dialog.open(SubjectRegisterComponent, {
+            panelClass: "actions-register-dialog",
+            data: {
+                title: "Đăng kí môn học",
+            },
+        });
+
+        dialogRef.afterClosed().subscribe((result) => {
+            if (result) {
+                this.fetch();
+            }
+        });
+    }
 }

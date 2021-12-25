@@ -1,0 +1,95 @@
+<div class="dialog-content-wrapper">
+    <mat-toolbar matDialogTitle class="mat-accent m-0">
+        <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+            <span class="title dialog-title">{{data.title | translate}}</span>
+            <button mat-button class="mat-icon-button" tabindex="-1" (click)="dialogRef.close()"
+                aria-label="Close dialog">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+    </mat-toolbar>
+
+    <div mat-dialog-content class="m-0" style="width: 800px;">
+        <div class="header event-form w-100-p" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="row"
+            fxLayoutAlign.gt-xs="space-between center">
+            <!-- SEARCH -->
+            <div id="searchBox" class="search-input-wrapper mx-12 m-md-0" fxFlex="1 0 auto" fxLayout="row"
+                fxLayoutAlign="center center">
+                <label for="search" class="mr-8">
+                    <mat-icon class="secondary-text">search</mat-icon>
+                </label>
+                <mat-form-field floatPlaceholder="never" class="w-80-p">
+                    <input id="search" matInput #filter trim="blur" placeholder="{{'Common.Search' | translate}}"
+                        [(ngModel)]="keyword" (keypress)="search()">
+                </mat-form-field>
+            </div>
+        </div>
+        <!-- / HEADER -->
+
+        <div class="content-card mat-white-bg mt-8">
+            <mat-table class="ara-table" #table [dataSource]="dataSource" matSort [@animateStagger]="{value:'50'}">
+                <ng-container matColumnDef="id">
+                    <mat-header-cell *matHeaderCellDef>{{'Common.No' | translate}}</mat-header-cell>
+                    <mat-cell *matCellDef="let item; let i = index;">
+                        <p class="text-truncate mr-8">{{i + 1}}</p>
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="subjectCode">
+                    <mat-header-cell *matHeaderCellDef>Mã học phần</mat-header-cell>
+                    <mat-cell *matCellDef="let item">
+                        <p class="text-truncate mr-8" matTooltip="{{item.subjectCode}}">{{item.subjectCode}}</p>
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="subjectName">
+                    <mat-header-cell *matHeaderCellDef>Tên học phần</mat-header-cell>
+                    <mat-cell *matCellDef="let item">
+                        <p class="text-truncate mr-8" matTooltip="{{item.subjectName}}">{{item.subjectName}}</p>
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="classcode">
+                    <mat-header-cell *matHeaderCellDef>Mã lớp</mat-header-cell>
+                    <mat-cell *matCellDef="let item">
+                        <p class="text-truncate mr-8" matTooltip="{{item.classcode}}">{{item.classcode}}</p>
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="numberCredit">
+                    <mat-header-cell *matHeaderCellDef>Số tín chỉ</mat-header-cell>
+                    <mat-cell *matCellDef="let item">
+                        <p class="text-truncate mr-8" matTooltip="{{item.numberCredit}}">{{item.numberCredit}}</p>
+                    </mat-cell>
+                </ng-container>
+
+                <!-- <ng-container matColumnDef="timeLearn">
+                    <mat-header-cell *matHeaderCellDef>Thời lượng</mat-header-cell>
+                    <mat-cell *matCellDef="let item">
+                        <p class="text-truncate mr-8" matTooltip="{{item.timeLearn}}">{{item.timeLearn}}</p>
+                    </mat-cell>
+                </ng-container> -->
+                <mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></mat-header-row>
+                <mat-row *cdkRowDef="let item; columns: displayedColumns;" (click)="rowClick(item)" 
+                    [class.accent]="selectedItem == item"
+                ></mat-row>
+                
+            </mat-table>
+            <div fxLayout="row">
+                <!-- <mat-paginator *ngIf="!configs.noPaging" #paginator [length]="length" [pageSize]="pageSize"
+                    [pageIndex]="pageIndex" [pageSizeOptions]="pageSizeOptions" [showFirstLastButtons]="true"
+                    (page)="pageEvent($event)">
+                </mat-paginator>
+
+                <mat-paginator *ngIf="configs.noPaging" #paginator [length]="length" [hidePageSize]="true">
+                </mat-paginator> -->
+            </div>
+        </div>
+    </div>
+    <div mat-dialog-actions class="m-0" fxLayout="row" fxLayoutAlign="center">
+        <button mat-button (click)="select()" tabindex="2" class="mat-raised-button mat-accent"
+            color="accent">{{'Common.Select' | translate}}</button>
+        <button mat-button (click)="cancel()" tabindex="3" class="mat-raised-button mat-warn"
+            color="warn">{{'Common.Cancel' | translate}}</button>
+    </div>
+</div>

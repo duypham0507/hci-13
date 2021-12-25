@@ -9,10 +9,11 @@ import { InformationRoutes } from './information.routing.';
 import { StudentInfoComponent } from './student-info/student-info.component';
 import { SubjectJoinComponent } from './subject-join/subject-join.component';
 import { SystemInfoComponent } from './system-info/system-info.component';
+import { SubjectRegisterComponent } from './subject-join/subject-register/subject-register.component';
 
 
 @NgModule({
-    declarations: [StudentInfoComponent, SubjectJoinComponent, SystemInfoComponent],
+    declarations: [StudentInfoComponent, SubjectJoinComponent, SystemInfoComponent, SubjectRegisterComponent],
     imports: [
         CommonModule,
         SharedModule,
