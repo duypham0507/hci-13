@@ -51,7 +51,7 @@ export class ListStudentComponent implements OnInit {
                 }
             })
             this.length = rs.length;
-            this.dataSource = rs;
+            this.dataSource = rs.filter(item => item.username !== 'Admin');;
         });
     }
 
