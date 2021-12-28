@@ -73,9 +73,14 @@ export class FuseLogin2Component implements OnInit {
 
     fetch() {
         this.service.GetList().subscribe((rs) => {
+<<<<<<< HEAD
             this.item = rs;
 
             console.log(this.item);
+=======
+            this.item = rs
+            console.log(this.item)
+>>>>>>> parent of aaf0dbb... dk mon
         });
     }
     onSubmit() {
