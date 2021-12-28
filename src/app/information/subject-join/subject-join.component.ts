@@ -44,7 +44,7 @@ export class SubjectJoinComponent implements OnInit {
 
     fetch(studentId?: any) { 
         this.service.GetList().subscribe((rs) => {
-            this.dataSource = rs;
+            this.dataSource = rs.filter(x => x.studentId == studentId);
         });
     }
 

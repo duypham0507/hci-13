@@ -6,6 +6,7 @@ import { fuseAnimations } from '@fuse/animations';
 import { TranslatePipe } from '@ngx-translate/core';
 import { SubjectJoinService } from 'app/information/service/subject-join.service';
 import { SubjectRegisterService } from 'app/information/service/subject-register.service';
+import { StudentService } from 'app/student-manager/service/student.service';
 
 @Component({
     templateUrl: './subject-register.component.html',
@@ -24,6 +25,7 @@ export class SubjectRegisterComponent implements OnInit {
     constructor(
         private service: SubjectRegisterService,
         private subjectJoinService: SubjectJoinService,
+        private studentService: StudentService,
         public snackBar: MatSnackBar,
         private translate: TranslatePipe,
         public dialogRef: MatDialogRef<SubjectRegisterComponent>,
@@ -32,7 +34,7 @@ export class SubjectRegisterComponent implements OnInit {
 
     ngOnInit(): void {
         let usr = localStorage.getItem("tnthvn_usr")
-        this.service.GetList().subscribe((rs) => {
+        this.studentService.GetList().subscribe((rs) => {
             rs.forEach(item => {
                 if(item.username === usr) {
                     this.item.studentId = item.id
@@ -67,6 +69,12 @@ export class SubjectRegisterComponent implements OnInit {
         debugger
         this.selectedItem = item;
         this.selectedId = item.id;
+    }
+
+    checkDuplicate(){
+        this.subjectJoinService.GetList().subscribe((rs) => {
+            
+        });
     }
 
     processResponse(res) {
