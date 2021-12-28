@@ -6,6 +6,7 @@ import { fuseAnimations } from '@fuse/animations';
 import { TranslatePipe } from '@ngx-translate/core';
 import { SubjectJoinService } from 'app/information/service/subject-join.service';
 import { SubjectRegisterService } from 'app/information/service/subject-register.service';
+import { StudentService } from 'app/student-manager/service/student.service';
 
 @Component({
     templateUrl: './subject-register.component.html',
@@ -17,6 +18,7 @@ import { SubjectRegisterService } from 'app/information/service/subject-register
 export class SubjectRegisterComponent implements OnInit {
     keyword: string;
     item: any = {};
+    studentId: any;
     selectedItem: any;
     selectedId: any;
     displayedColumns: any[] = ['id', 'subjectCode', 'subjectName', 'classcode', 'numberCredit'];
@@ -24,18 +26,22 @@ export class SubjectRegisterComponent implements OnInit {
     constructor(
         private service: SubjectRegisterService,
         private subjectJoinService: SubjectJoinService,
+        private studentService: StudentService,
         public snackBar: MatSnackBar,
         private translate: TranslatePipe,
         public dialogRef: MatDialogRef<SubjectRegisterComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any,
-    ) { }
+    ) { 
+
+    }
 
     ngOnInit(): void {
         let usr = localStorage.getItem("tnthvn_usr")
-        this.service.GetList().subscribe((rs) => {
+        this.studentService.GetList().subscribe((rs) => {
+            console.log(rs)
             rs.forEach(item => {
                 if(item.username === usr) {
-                    this.item.studentId = item.id
+                    this.studentId = item.id
                 }
             })
         });
@@ -64,8 +70,8 @@ export class SubjectRegisterComponent implements OnInit {
     }
 
     rowClick(item: any) {
-        debugger
         this.selectedItem = item;
+        this.item = this.selectedItem;
         this.selectedId = item.id;
     }
 
@@ -86,8 +92,10 @@ export class SubjectRegisterComponent implements OnInit {
     }
 
     select() {
+        debugger
         if (this.selectedItem != undefined) {
-            this.item = this.selectedItem;
+            this.item.studentId = this.studentId;
+            this.item.semester = 20211;
             this.subjectJoinService.Add(this.item).subscribe(res => {
                 if (res) {
                     this.processResponse(true)
