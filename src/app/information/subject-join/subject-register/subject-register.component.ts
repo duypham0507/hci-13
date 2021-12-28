@@ -20,6 +20,7 @@ export class SubjectRegisterComponent implements OnInit {
     item: any = {};
     selectedItem: any;
     selectedId: any;
+    studentId: any;
     displayedColumns: any[] = ['id', 'subjectCode', 'subjectName', 'classcode', 'numberCredit'];
     dataSource: MatTableDataSource<any>;
     constructor(
@@ -37,7 +38,7 @@ export class SubjectRegisterComponent implements OnInit {
         this.studentService.GetList().subscribe((rs) => {
             rs.forEach(item => {
                 if(item.username === usr) {
-                    this.item.studentId = item.id
+                    this.studentId = item.id
                 }
             })
         });
@@ -68,12 +69,19 @@ export class SubjectRegisterComponent implements OnInit {
     rowClick(item: any) {
         debugger
         this.selectedItem = item;
+        this.item =this.selectedItem;
         this.selectedId = item.id;
     }
 
     checkDuplicate(){
         this.subjectJoinService.GetList().subscribe((rs) => {
-            
+            rs.forEach(item => {
+                if(this.selectedItem.classcode == item.classcode){
+                    return true;
+                } else {
+                    return false;
+                }
+            })
         });
     }
 
@@ -94,8 +102,14 @@ export class SubjectRegisterComponent implements OnInit {
     }
 
     select() {
-        if (this.selectedItem != undefined) {
-            this.item = this.selectedItem;
+        if (this.selectedItem == undefined) {
+            this.snackBar.open(this.translate.transform('Bạn chưa chọn học phần'), 'OK', {
+                verticalPosition: 'top',
+                duration: 2000
+            });
+        } else{
+            this.item.studentId = this.studentId;
+            this.item.semester = 20211;
             this.subjectJoinService.Add(this.item).subscribe(res => {
                 if (res) {
                     this.processResponse(true)

@@ -17,6 +17,7 @@ import { filter } from 'rxjs/operators';
 })
 export class SubjectJoinComponent implements OnInit {
     keyword: string;
+    studentId: any
     displayedColumns = ["id", "subjectCode", "subjectName", "classcode", "numberCredit", "totalScore", "status"];
     dataSource: MatTableDataSource<any>;
     constructor(
@@ -29,7 +30,7 @@ export class SubjectJoinComponent implements OnInit {
 
      }
 
-    ngOnInit(): void {
+     ngOnInit(): void {
         let usr = localStorage.getItem("tnthvn_usr");
         var studentId: any
         this.studentService.GetList().subscribe((rs) => {
@@ -44,7 +45,8 @@ export class SubjectJoinComponent implements OnInit {
 
     fetch(studentId?: any) { 
         this.service.GetList().subscribe((rs) => {
-            this.dataSource = rs.filter(x => x.studentId == studentId);
+            if(studentId == rs.studentId)
+            this.dataSource = rs;
         });
     }
 
