@@ -51,12 +51,8 @@ export class ListStudentComponent implements OnInit {
                 }
             })
             this.length = rs.length;
-<<<<<<< HEAD
             // hide admin in student list
             this.dataSource = rs.filter(item => item.username !== 'Admin');
-=======
-            this.dataSource = rs;
->>>>>>> parent of aaf0dbb... dk mon
         });
     }
 
