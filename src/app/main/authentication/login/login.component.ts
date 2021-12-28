@@ -1,19 +1,24 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { FuseConfigService } from '../../../core/services/config.service';
-import { fuseAnimations } from '../../../core/animations';
-import { AuthenticationService } from '../../../shared/services/AuthenticationService';
-import { Router } from '@angular/router';
-import { Constants } from '../../../shared/constants';
-import { CookieService } from 'ngx-cookie-service';
-import { StudentService } from 'app/student-manager/service/student.service';
-import { map } from 'rxjs/operators';
+import { Component, OnInit } from "@angular/core";
+import {
+    FormBuilder,
+    FormControl,
+    FormGroup,
+    Validators,
+} from "@angular/forms";
+import { FuseConfigService } from "../../../core/services/config.service";
+import { fuseAnimations } from "../../../core/animations";
+import { AuthenticationService } from "../../../shared/services/AuthenticationService";
+import { Router } from "@angular/router";
+import { Constants } from "../../../shared/constants";
+import { CookieService } from "ngx-cookie-service";
+import { StudentService } from "app/student-manager/service/student.service";
+import { map } from "rxjs/operators";
 
 @Component({
-    selector: 'fuse-login',
-    templateUrl: './login.component.html',
-    styleUrls: ['./login.component.scss'],
-    animations: fuseAnimations
+    selector: "fuse-login",
+    templateUrl: "./login.component.html",
+    styleUrls: ["./login.component.scss"],
+    animations: fuseAnimations,
 })
 export class FuseLogin2Component implements OnInit {
     item: any;
@@ -22,7 +27,7 @@ export class FuseLogin2Component implements OnInit {
     loginForm: FormGroup;
     loginFormErrors: any;
     saveLogin: boolean = false;
-    public errorMessage: string = '';
+    public errorMessage: string = "";
 
     constructor(
         private service: StudentService,
@@ -33,31 +38,31 @@ export class FuseLogin2Component implements OnInit {
     ) {
         this.fuseConfig.setSettings({
             layout: {
-                navigation: 'none',
-                toolbar: 'none',
-                footer: 'none',
-                class: ''
-            }
+                navigation: "none",
+                toolbar: "none",
+                footer: "none",
+                class: "",
+            },
         });
 
         this.loginFormErrors = {
             username: {},
-            password: {}
+            password: {},
         };
     }
 
     ngOnInit() {
-        let usr = '';
-        let pws = '';
-        if (localStorage.getItem('tnthvn_save') === 'true') {
-            usr = localStorage.getItem('tnthvn_usr');
-            pws = localStorage.getItem('tnthvn_pws');
+        let usr = "";
+        let pws = "";
+        if (localStorage.getItem("tnthvn_save") === "true") {
+            usr = localStorage.getItem("tnthvn_usr");
+            pws = localStorage.getItem("tnthvn_pws");
             this.saveLogin = true;
         }
         this.loginForm = this.formBuilder.group({
             username: [usr, [Validators.required]],
             password: [pws, Validators.required],
-            saveLogin: [this.saveLogin]
+            saveLogin: [this.saveLogin],
         });
 
         this.loginForm.valueChanges.subscribe(() => {
@@ -68,7 +73,9 @@ export class FuseLogin2Component implements OnInit {
 
     fetch() {
         this.service.GetList().subscribe((rs) => {
-            this.item = rs
+            this.item = rs;
+
+            console.log(this.item);
         });
     }
     onSubmit() {
@@ -76,23 +83,23 @@ export class FuseLogin2Component implements OnInit {
         this.errorMessage = "";
         let usr = this.loginForm.controls["username"].value;
         let pws = this.loginForm.controls["password"].value;
-        this.item.forEach(item => {
+        this.item.forEach((item) => {
             if (item.username == usr && item.password == pws) {
                 if (this.saveLogin) {
                     localStorage.setItem("tnthvn_usr", usr);
                     localStorage.setItem("tnthvn_pws", pws);
                     localStorage.setItem("tnthvn_save", "true");
-                }
-                else {
+                } else {
                     localStorage.removeItem("tnthvn_usr");
                     localStorage.removeItem("tnthvn_pws");
                     localStorage.removeItem("tnthvn_save");
                 }
-                this.router.navigate(['/student-list']);
+                this.router.navigate(["/student-list"]);
             } else {
-                this.errorMessage = "Đăng nhập thất bại, vui lòng kiểm tra tài khoản và mật khẩu.";
+                this.errorMessage =
+                    "Đăng nhập thất bại, vui lòng kiểm tra tài khoản và mật khẩu.";
             }
-        })
+        });
     }
 
     onLoginFormValuesChanged() {

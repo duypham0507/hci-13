@@ -51,7 +51,8 @@ export class ListStudentComponent implements OnInit {
                 }
             })
             this.length = rs.length;
-            this.dataSource = rs.filter(item => item.username !== 'Admin');;
+            // hide admin in student list
+            this.dataSource = rs.filter(item => item.username !== 'Admin');
         });
     }
 
