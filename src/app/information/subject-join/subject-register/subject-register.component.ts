@@ -7,6 +7,8 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { SubjectJoinService } from 'app/information/service/subject-join.service';
 import { SubjectRegisterService } from 'app/information/service/subject-register.service';
 import { StudentService } from 'app/student-manager/service/student.service';
+import { async } from 'rxjs/internal/scheduler/async';
+import { filter } from 'rxjs/operators';
 
 @Component({
     templateUrl: './subject-register.component.html',
@@ -18,9 +20,11 @@ import { StudentService } from 'app/student-manager/service/student.service';
 export class SubjectRegisterComponent implements OnInit {
     keyword: string;
     item: any = {};
+    listData:any = [];
     selectedItem: any;
     selectedId: any;
     studentId: any;
+    checkduplicate: boolean = false;
     displayedColumns: any[] = ['id', 'subjectCode', 'subjectName', 'classcode', 'numberCredit'];
     dataSource: MatTableDataSource<any>;
     constructor(
@@ -37,7 +41,7 @@ export class SubjectRegisterComponent implements OnInit {
         let usr = localStorage.getItem("tnthvn_usr")
         this.studentService.GetList().subscribe((rs) => {
             rs.forEach(item => {
-                if(item.username === usr) {
+                if (item.username === usr) {
                     this.studentId = item.id
                 }
             })
@@ -67,24 +71,23 @@ export class SubjectRegisterComponent implements OnInit {
     }
 
     rowClick(item: any) {
-        debugger
         this.selectedItem = item;
-        this.item =this.selectedItem;
+        this.item = this.selectedItem;
         this.selectedId = item.id;
+       
     }
 
-    checkDuplicate(){
-        this.subjectJoinService.GetList().subscribe((rs) => {
-            rs.forEach(item => {
-                if(this.selectedItem.classcode == item.classcode){
-                    return true;
-                } else {
-                    return false;
-                }
+    async checkDuplicate(classcode) {
+        await this.subjectJoinService.GetList().toPromise().then((rs) => {
+            this.listData = rs.filter(x => x.studentId == this.studentId)
+            this.listData.forEach(item => {
+                if (classcode == item.classcode) {
+                    this.checkduplicate = true;
+                    return;
+                } 
             })
         });
     }
-
     processResponse(res) {
         if (res) {
             this.snackBar.open(this.translate.transform('Common.Msg.UpdateSuccess'), 'OK', {
@@ -101,23 +104,35 @@ export class SubjectRegisterComponent implements OnInit {
         }
     }
 
-    select() {
+    async register() {
+        
         if (this.selectedItem == undefined) {
             this.snackBar.open(this.translate.transform('Bạn chưa chọn học phần'), 'OK', {
                 verticalPosition: 'top',
-                duration: 2000
+                duration: 1200
             });
-        } else{
-            this.item.studentId = this.studentId;
-            this.item.semester = 20211;
-            this.subjectJoinService.Add(this.item).subscribe(res => {
-                if (res) {
-                    this.processResponse(true)
-                }
-                else {
-                    this.processResponse(false)
-                }
-            });
+        } else {
+            await this.checkDuplicate(this.selectedItem.classcode);
+            if(this.checkduplicate){
+                this.snackBar.open(this.translate.transform('Bạn đã đăng kí lớp này'), 'OK', {
+                    verticalPosition: 'top',
+                    duration: 1200
+                });
+                this.checkduplicate = false;
+                return;
+            }else{
+                this.item.studentId = this.studentId;
+                this.item.semester = 20211;
+                this.subjectJoinService.Add(this.item).subscribe(res => {
+                    if (res) {
+                        this.processResponse(true)
+                    }
+                    else {
+                        this.processResponse(false)
+                    }
+                });
+            }
+                
         }
     }
 

@@ -32,21 +32,19 @@ export class SubjectJoinComponent implements OnInit {
 
      ngOnInit(): void {
         let usr = localStorage.getItem("tnthvn_usr");
-        var studentId: any
         this.studentService.GetList().subscribe((rs) => {
             rs.forEach(item => {
                 if(item.username === usr) {
-                    studentId = item.id
+                    this.studentId = item.id
                 }
             })
         });
-        this.fetch(studentId);
+        this.fetch();
     }
 
-    fetch(studentId?: any) { 
+    fetch() { 
         this.service.GetList().subscribe((rs) => {
-            if(studentId == rs.studentId)
-            this.dataSource = rs;
+            this.dataSource = rs.filter(x => x.studentId == this.studentId);
         });
     }
 

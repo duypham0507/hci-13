@@ -116,6 +116,10 @@ export class FuseToolbarComponent implements OnInit{
         console.log(value);
     }
 
+    toInfomation(){
+        this.router.navigate(['/information/student-info'])
+    }
+
     setLanguage(lang) {
         // Set the selected language for toolbar
         this.selectedLanguage = lang;
