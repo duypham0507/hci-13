@@ -51,15 +51,12 @@ export const locale = {
             'Captcha': 'Mã bảo mật',
             'SendEmail': 'Gửi email',
             'Msg': {
-                'DeleteConfirm': 'Bạn phải có chắc muốn xóa?',
+                'DeleteConfirm': 'Bạn có chắc muốn xóa?',
                 'DeleteSuccess': 'Xóa thành công',
                 'DeleteError': 'Xóa thất bại',
-                'DeleteErrorUsing': 'Xóa thất bại. Đối tượng đang được sử dụng.',
                 'SaveSuccess': 'Lưu thành công',
                 'UpdateSuccess': 'Cập nhật thành công',
                 'UpdateError': 'Cập nhật thất bại',
-                'DescriptionMaxLength': 'Mô tả quá dài',
-                'ConfirmChangeStatus': 'Bạn có chắc muốn cập nhật trạng thái bản ghi này không?',
                 'Fullname': {
                     'Required':'Bạn cần nhập họ tên',
                 },

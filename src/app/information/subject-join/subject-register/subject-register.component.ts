@@ -90,14 +90,14 @@ export class SubjectRegisterComponent implements OnInit {
     }
     processResponse(res) {
         if (res) {
-            this.snackBar.open(this.translate.transform('Common.Msg.UpdateSuccess'), 'OK', {
+            this.snackBar.open(this.translate.transform('Đăng kí thành công'), 'OK', {
                 verticalPosition: 'top',
                 duration: 2000
             });
             this.dialogRef.close(res);
         }
         else {
-            this.snackBar.open(this.translate.transform('Common.Msg.UpdateError'), 'OK', {
+            this.snackBar.open(this.translate.transform('Đăng kí thất bại'), 'OK', {
                 verticalPosition: 'top',
                 duration: 2000
             });

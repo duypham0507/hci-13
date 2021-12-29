@@ -8,6 +8,7 @@ import { StudentService } from 'app/student-manager/service/student.service';
 import { SubjectJoinService } from '../service/subject-join.service';
 import { SubjectRegisterComponent } from './subject-register/subject-register.component';
 import { filter } from 'rxjs/operators';
+import { FuseConfirmDialogComponent } from 'app/core/components/confirm-dialog/confirm-dialog.component';
 
 @Component({
     templateUrl: './subject-join.component.html',
@@ -17,8 +18,9 @@ import { filter } from 'rxjs/operators';
 })
 export class SubjectJoinComponent implements OnInit {
     keyword: string;
-    studentId: any
-    displayedColumns = ["id", "subjectCode", "subjectName", "classcode", "numberCredit", "totalScore", "status"];
+    studentId: any;
+    subjectCount: any = [];
+    displayedColumns = ["id", "subjectCode", "subjectName", "classcode", "numberCredit", "totalScore", "actions"];
     dataSource: MatTableDataSource<any>;
     constructor(
         private service: SubjectJoinService,
@@ -61,5 +63,43 @@ export class SubjectJoinComponent implements OnInit {
                 this.fetch();
             }
         });
+    }
+
+    delete(item:any){
+        let confirmDialogRef = this.dialog.open(FuseConfirmDialogComponent, {
+            disableClose: false,
+        });
+
+        confirmDialogRef.componentInstance.confirmMessage =
+            "Common.Msg.DeleteConfirm";
+            confirmDialogRef.afterClosed().subscribe((result) => {
+                if (result) {
+                    this.service.Delete(item.id).subscribe((rs) => {
+                        if(rs){
+                            this.snackBar.open(
+                                this.translate.transform(
+                                    "Common.Msg.DeleteSuccess"
+                                ),
+                                "OK",
+                                {
+                                    verticalPosition: "top",
+                                    duration: 2000,
+                                }
+                            );
+                            this.fetch();
+                        }
+                        else {
+                            this.snackBar.open(
+                                this.translate.transform("Common.Msg.DeleteError"),
+                                "OK",
+                                {
+                                    verticalPosition: "top",
+                                    duration: 2000,
+                                }
+                            );
+                        }
+                    });
+                }
+            });
     }
 }
