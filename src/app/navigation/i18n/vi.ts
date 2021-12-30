@@ -2,7 +2,7 @@ export const locale = {
     lang: 'vi',
     data: {
         'APP': {
-            'SHORTNAME': 'QUẢN TRỊ',
+            'SHORTNAME': 'NHÓM 13',
             'FULLNAME': 'QUẢN TRỊ HỆ THỐNG'
         },
         'Language': {
@@ -105,8 +105,8 @@ export const locale = {
             'BlockAdSms': 'Từ chối nhận tin quảng cáo',
             'Policy': 'Chính sách bảo mật',
             'Admin': 'Quản trị',
-            'System': 'Danh Sách ',
-            'Personal': 'Cá nhân ',
+            'System': 'Đăng ký học tập ',
+            'Personal': 'Quản trị ',
         },
         
     }

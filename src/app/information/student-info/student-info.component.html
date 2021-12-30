@@ -1,1 +1,38 @@
-<p>student infor</p>
+<div class="page-layout carded fullwidth" fusePerfectScrollbar>
+    <div class="top-bg mat-accent-bg header-height"></div>
+
+    <div class="center">
+        <div
+            class="header white-fg header-top"
+            fxLayout="column"
+            fxLayoutAlign="center center"
+            fxLayout.gt-xs="row"
+            fxLayoutAlign.gt-xs="space-between center"
+        >
+            <div
+                class="logo my-12 m-sm-0"
+                fxLayout="row"
+                fxLayoutAlign="start center"
+            >
+                <!-- <mat-icon
+                    class="logo-icon mr-16"
+                    *fuseIfOnDom
+                    [@animate]="{
+                        value: '*',
+                        params: { delay: '50ms', scale: '0.2' }
+                    }"
+                    >supervisor_account</mat-icon
+                > -->
+                <span
+                    class="logo-text h1"
+                    *fuseIfOnDom
+                    [@animate]="{
+                        value: '*',
+                        params: { delay: '100ms', x: '-25px' }
+                    }"  >Thông tin sinh viên </span>
+                <!-- <img class="avatar" src="{{user.avatar}}"> -->
+            </div>
+        </div>
+        <div></div>
+    </div>
+</div>

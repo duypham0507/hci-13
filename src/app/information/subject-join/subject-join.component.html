@@ -7,10 +7,10 @@
             <div class="logo my-12 m-sm-0" fxLayout="row" fxLayoutAlign="start center">
                 <mat-icon class="logo-icon mr-16" *fuseIfOnDom
                     [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">supervisor_account</mat-icon>
-                <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Học
-                    phần đã đăng kí</span>
+                <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                    Học phần đã đăng kí</span>
             </div>
-
+<!-- 
             <div id="searchBox" class="search-input-wrapper mx-12 m-md-0" fxFlex="1 0 auto" fxLayout="row"
                 fxLayoutAlign="start center">
                 <div>
@@ -22,11 +22,13 @@
                     <input id="search" matInput #filter trim="blur" placeholder="{{'Common.Search' | translate}}"
                         [(ngModel)]="keyword">
                 </mat-form-field>
-                <button mat-raised-button class="add-product-button mat-white-bg my-12 mt-sm-0" (click)="add()">
-                    <span>{{'Đăng kí học phần' | translate}}</span>
-                </button>
-            </div>
 
+                
+                
+            </div> -->
+            <button mat-raised-button class="add-product-button mat-white-bg my-12 mt-sm-0" (click)="add()">
+                <span>{{'Đăng kí học phần' | translate}}</span>
+            </button>
         
         </div>
 
