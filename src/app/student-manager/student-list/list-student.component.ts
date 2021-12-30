@@ -45,9 +45,9 @@ export class ListStudentComponent implements OnInit {
                     this.isAdmin = item.isAdmin
                 }
                 if(this.isAdmin == true) {
-                    this.displayedColumns = ["id", "fistName" , "studentsCode", "className", "majoring", "actions"];
+                    this.displayedColumns = ["id", "name" , "studentsCode", "className", "majoring", "actions"];
                 } else {
-                    this.displayedColumns = ["id", "fistName", "studentsCode", "className", "majoring"];
+                    this.displayedColumns = ["id", "name", "studentsCode", "className", "majoring"];
                 }
             })
             this.length = rs.length;

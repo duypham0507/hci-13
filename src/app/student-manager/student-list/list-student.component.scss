@@ -33,25 +33,30 @@
                 min-height: 64px;
             }
 
-            // .mat-column-id {
-            //     flex: 0 1 5%;
-            // }
+            .mat-cell {
+                padding: 0px !important;
+            }
 
-            // .mat-column-name {
-            //     flex: 0 1 25%px;
-            // }
-            // .mat-column-studentsCode {
-            //     flex: 0 1 10%;
-            // }
-            // .mat-column-dateOfBirth {
-            //     flex: 0 1 15%;
-            // }
-            // .mat-column-className {
-            //     flex: 0 1 100px;
-            // }
-            // .mat-column-status {
-            //     flex: 0 1 100px;
-            // }
+            .mat-header-cell {
+                padding: 0px !important;
+            }
+
+            .mat-column-id {
+                flex: 0 1 80px;
+                place-content: center;
+            }
+
+            .mat-column-name {
+                flex: 0 1 350px;
+            }
+
+            .mat-column-majoring {
+                flex: 0 1 350px;
+            }
+
+            .mat-column-status {
+                flex: 0 1 100px;
+            }
 
         }
 

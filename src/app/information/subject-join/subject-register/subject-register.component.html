@@ -26,12 +26,19 @@
         </div>
         <!-- / HEADER -->
 
-        <div class="content-card mat-white-bg mt-8">
+        <div class="content-card mat-white-bg">
             <mat-table class="ara-table" #table [dataSource]="dataSource" matSort [@animateStagger]="{value:'50'}">
                 <ng-container matColumnDef="id">
                     <mat-header-cell *matHeaderCellDef>{{'Common.No' | translate}}</mat-header-cell>
                     <mat-cell *matCellDef="let item; let i = index;">
                         <p class="text-truncate mr-8">{{i + 1}}</p>
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="classcode">
+                    <mat-header-cell *matHeaderCellDef>Mã lớp</mat-header-cell>
+                    <mat-cell *matCellDef="let item">
+                        <p class="text-truncate mr-8" matTooltip="{{item.classcode}}">{{item.classcode}}</p>
                     </mat-cell>
                 </ng-container>
 
@@ -49,16 +56,16 @@
                     </mat-cell>
                 </ng-container>
 
-                <ng-container matColumnDef="classcode">
-                    <mat-header-cell *matHeaderCellDef>Mã lớp</mat-header-cell>
+                <ng-container matColumnDef="nameEnglish">
+                    <mat-header-cell *matHeaderCellDef>Tên tiếng anh</mat-header-cell>
                     <mat-cell *matCellDef="let item">
-                        <p class="text-truncate mr-8" matTooltip="{{item.classcode}}">{{item.classcode}}</p>
+                        <p class="text-truncate mr-8" matTooltip="{{item.nameEnglish}}">{{item.nameEnglish}}</p>
                     </mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="numberCredit">
                     <mat-header-cell *matHeaderCellDef>Số tín chỉ</mat-header-cell>
-                    <mat-cell *matCellDef="let item">
+                    <mat-cell *matCellDef="let item" fxLayoutAlign="center center">
                         <p class="text-truncate mr-8" matTooltip="{{item.numberCredit}}">{{item.numberCredit}}</p>
                     </mat-cell>
                 </ng-container>
@@ -88,7 +95,7 @@
     </div>
     <div mat-dialog-actions class="m-0" fxLayout="row" fxLayoutAlign="center">
         <button mat-button (click)="register()" tabindex="2" class="mat-raised-button mat-accent"
-            color="accent">{{'Common.Select' | translate}}</button>
+            color="accent">{{'Đăng kí' | translate}}</button>
         <button mat-button (click)="cancel()" tabindex="3" class="mat-raised-button mat-warn"
             color="warn">{{'Common.Cancel' | translate}}</button>
     </div>

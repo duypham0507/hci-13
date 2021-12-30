@@ -40,6 +40,13 @@
                     </mat-cell>
                 </ng-container>
 
+                <ng-container matColumnDef="semester">
+                    <mat-header-cell *matHeaderCellDef>Học kì</mat-header-cell>
+                    <mat-cell *matCellDef="let item">
+                        <p class="text-truncate mr-8" matTooltip="{{item.semester}}">{{item.semester}}</p>
+                    </mat-cell>
+                </ng-container>
+
                 <ng-container matColumnDef="subjectCode">
                     <mat-header-cell *matHeaderCellDef>Mã học phần</mat-header-cell>
                     <mat-cell *matCellDef="let item">
@@ -51,6 +58,13 @@
                     <mat-header-cell *matHeaderCellDef>Tên học phần</mat-header-cell>
                     <mat-cell *matCellDef="let item">
                         <p class="text-truncate mr-8" matTooltip="{{item.subjectName}}">{{item.subjectName}}</p>
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="nameEnglish">
+                    <mat-header-cell *matHeaderCellDef>Tên tiếng anh</mat-header-cell>
+                    <mat-cell *matCellDef="let item">
+                        <p class="text-truncate mr-8" matTooltip="{{item.nameEnglish}}">{{item.nameEnglish}}</p>
                     </mat-cell>
                 </ng-container>
 
@@ -68,12 +82,12 @@
                     </mat-cell>
                 </ng-container>
 
-                <ng-container matColumnDef="totalScore">
+                <!-- <ng-container matColumnDef="totalScore">
                     <mat-header-cell *matHeaderCellDef>Hệ số</mat-header-cell>
                     <mat-cell *matCellDef="let item">
                         <p class="text-truncate mr-8" matTooltip="{{item.totalScore}}">{{item.totalScore}}</p>
                     </mat-cell>
-                </ng-container>
+                </ng-container> -->
 
                 <!-- <ng-container matColumnDef="status">
                     <mat-header-cell *matHeaderCellDef>Trạng thái</mat-header-cell>

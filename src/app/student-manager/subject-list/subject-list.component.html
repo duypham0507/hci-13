@@ -53,6 +53,20 @@
                     </mat-cell>
                 </ng-container>
 
+                <ng-container matColumnDef="nameEnglish">
+                    <mat-header-cell *matHeaderCellDef>Tên tiếng anh</mat-header-cell>
+                    <mat-cell *matCellDef="let item">
+                        <p class="text-truncate mr-8" matTooltip="{{item.nameEnglish}}">{{item.nameEnglish}}</p>
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="managementInstitute">
+                    <mat-header-cell *matHeaderCellDef>Viện quản lí</mat-header-cell>
+                    <mat-cell *matCellDef="let item">
+                        <p class="text-truncate mr-8" matTooltip="{{item.managementInstitute}}">{{item.managementInstitute}}</p>
+                    </mat-cell>
+                </ng-container>
+
                 <ng-container matColumnDef="timeLearn">
                     <mat-header-cell *matHeaderCellDef>Thời lượng</mat-header-cell>
                     <mat-cell *matCellDef="let item">
@@ -71,20 +85,6 @@
                     <mat-header-cell *matHeaderCellDef>TC học phí</mat-header-cell>
                     <mat-cell *matCellDef="let item">
                         <p class="text-truncate mr-8" matTooltip="{{item.tuitionCredit}}">{{item.tuitionCredit}}</p>
-                    </mat-cell>
-                </ng-container>
-
-                <ng-container matColumnDef="managementInstitute">
-                    <mat-header-cell *matHeaderCellDef>Viện quản lí</mat-header-cell>
-                    <mat-cell *matCellDef="let item">
-                        <p class="text-truncate mr-8" matTooltip="{{item.managementInstitute}}">{{item.managementInstitute}}</p>
-                    </mat-cell>
-                </ng-container>
-
-                <ng-container matColumnDef="nameEnglish">
-                    <mat-header-cell *matHeaderCellDef>Tên tiếng anh</mat-header-cell>
-                    <mat-cell *matCellDef="let item">
-                        <p class="text-truncate mr-8" matTooltip="{{item.nameEnglish}}">{{item.nameEnglish}}</p>
                     </mat-cell>
                 </ng-container>
 

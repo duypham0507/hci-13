@@ -25,7 +25,7 @@ export class SubjectRegisterComponent implements OnInit {
     selectedId: any;
     studentId: any;
     checkduplicate: boolean = false;
-    displayedColumns: any[] = ['id', 'subjectCode', 'subjectName', 'classcode', 'numberCredit'];
+    displayedColumns: any[] = ['id', 'classcode', 'subjectCode', 'subjectName', 'nameEnglish', 'numberCredit'];
     dataSource: MatTableDataSource<any>;
     constructor(
         private service: SubjectRegisterService,
@@ -77,11 +77,11 @@ export class SubjectRegisterComponent implements OnInit {
        
     }
 
-    async checkDuplicate(classcode) {
+    async checkDuplicate(subjectName) {
         await this.subjectJoinService.GetList().toPromise().then((rs) => {
             this.listData = rs.filter(x => x.studentId == this.studentId)
             this.listData.forEach(item => {
-                if (classcode == item.classcode) {
+                if (subjectName == item.subjectName) {
                     this.checkduplicate = true;
                     return;
                 } 
@@ -112,9 +112,9 @@ export class SubjectRegisterComponent implements OnInit {
                 duration: 1200
             });
         } else {
-            await this.checkDuplicate(this.selectedItem.classcode);
+            await this.checkDuplicate(this.selectedItem.subjectName);
             if(this.checkduplicate){
-                this.snackBar.open(this.translate.transform('Bạn đã đăng kí lớp này'), 'OK', {
+                this.snackBar.open(this.translate.transform('Bạn đã đăng kí học phần này'), 'OK', {
                     verticalPosition: 'top',
                     duration: 1200
                 });

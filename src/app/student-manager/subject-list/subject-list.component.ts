@@ -37,10 +37,10 @@ export class SubjectListComponent implements OnInit {
                     this.isAdmin = item.isAdmin
                 }
                 if(this.isAdmin == true) {
-                    this.displayedColumns = ["id", "subjectCode", "subjectName", "timeLearn", "numberCredit", "tuitionCredit", "managementInstitute", "nameEnglish", "weight", "actions"];
+                    this.displayedColumns = ["id", "subjectCode", "subjectName", "nameEnglish", "managementInstitute", "timeLearn", "numberCredit", "tuitionCredit", "weight", "actions"];
                 } else {
-                    this.displayedColumns = ["id", "subjectCode", "subjectName", "timeLearn", "numberCredit", "tuitionCredit", "managementInstitute", "nameEnglish", "weight"];
-                }
+                    this.displayedColumns = ["id", "subjectCode", "subjectName", "nameEnglish", "managementInstitute", "timeLearn", "numberCredit", "tuitionCredit", "weight"];
+                } 
             })
         });
         this.fetch();

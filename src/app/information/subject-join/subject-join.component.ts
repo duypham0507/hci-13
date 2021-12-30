@@ -20,7 +20,7 @@ export class SubjectJoinComponent implements OnInit {
     keyword: string;
     studentId: any;
     subjectCount: any = [];
-    displayedColumns = ["id", "subjectCode", "subjectName", "classcode", "numberCredit", "totalScore", "actions"];
+    displayedColumns = ["id", "semester", "subjectCode", "subjectName", "nameEnglish", "classcode", "numberCredit", "actions"];
     dataSource: MatTableDataSource<any>;
     constructor(
         private service: SubjectJoinService,
@@ -54,7 +54,7 @@ export class SubjectJoinComponent implements OnInit {
         let dialogRef = this.dialog.open(SubjectRegisterComponent, {
             panelClass: "actions-register-dialog",
             data: {
-                title: "Đăng kí môn học",
+                title: "Danh sách lớp mở",
             },
         });
 
