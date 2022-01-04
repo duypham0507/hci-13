@@ -30,7 +30,7 @@ export class SubjectListComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-         let usr = localStorage.getItem("tnthvn_usr")
+        let usr = localStorage.getItem("tnthvn_usr")
         this.studentService.GetList().subscribe((rs) => {
             rs.forEach(item => {
                 if(item.username === usr) {

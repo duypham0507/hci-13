@@ -74,26 +74,21 @@ export class FuseLogin2Component implements OnInit {
     fetch() {
         this.service.GetList().subscribe((rs) => {
             this.item = rs;
-
-            console.log(this.item);
         });
     }
     onSubmit() {
-        debugger;
         this.errorMessage = "";
         let usr = this.loginForm.controls["username"].value;
         let pws = this.loginForm.controls["password"].value;
         this.item.forEach((item) => {
+            debugger;
             if (item.username == usr && item.password == pws) {
-                if (this.saveLogin) {
-                    localStorage.setItem("tnthvn_usr", usr);
-                    localStorage.setItem("tnthvn_pws", pws);
-                    localStorage.setItem("tnthvn_save", "true");
-                } else {
-                    localStorage.removeItem("tnthvn_usr");
-                    localStorage.removeItem("tnthvn_pws");
-                    localStorage.removeItem("tnthvn_save");
-                }
+                // if (this.saveLogin) {
+                // }
+                localStorage.setItem("tnthvn_usr", usr);
+                localStorage.setItem("tnthvn_pws", pws);
+                localStorage.setItem("tnthvn_save", "true");
+                localStorage.setItem("admin", item.isAdmin);
                 this.router.navigate(["/student-list"]);
             } else {
                 this.errorMessage =
