@@ -17,11 +17,11 @@ export class AddStudentComponent implements OnInit {
     form: FormGroup;
     formErrors: any;
 
-    name: FormControl;
-    studentsCode: FormControl;
-    majoring: FormControl;
-    className: FormControl;
-    status: FormControl;
+    // name: FormControl;
+    // studentsCode: FormControl;
+    // majoring: FormControl;
+    // className: FormControl;
+    // status: FormControl;
 
     isEdit: boolean;
 
@@ -44,22 +44,19 @@ export class AddStudentComponent implements OnInit {
             name: {},
             studentsCode: {},
             majoring: {},
-            className: {}, 
+            className: {},
         };
-     }
+    }
 
     ngOnInit(): void {
         this.form = this.formBuilder.group({
             name: new FormControl(this.item.name),
+            gender: new FormControl(this.item.gender),
             studentsCode: new FormControl(this.item.studentsCode),
-           majoring: new FormControl(this.item.majoring),
-            className: new FormControl(this.item.className)
-        });
-        this.form = this.formBuilder.group({
-            name: this.name,
-            studentsCode: this.studentsCode,
-            majoring: this.majoring,
-            className: this.className,
+            majoring: new FormControl(this.item.majoring),
+            className: new FormControl(this.item.className),
+            phoneNumber: new FormControl(this.item.phoneNumber),
+            email: new FormControl(this.item.email)
         });
     }
 

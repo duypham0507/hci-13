@@ -24,6 +24,16 @@
 
             <div fxLayout="row">
                 <mat-form-field fxFlex="100%">
+                    <mat-label>Giới tính</mat-label>
+                    <input rows="3" matInput tabindex="4" required name="gender" formControlName="gender" [(ngModel)]="item.gender"
+                        trim="blur" placeholder="Mã lớp" />
+
+                </mat-form-field>
+
+            </div>
+
+            <div fxLayout="row">
+                <mat-form-field fxFlex="100%">
                     <mat-label>Mã số sinh viên</mat-label>
                     <input matInput tabindex="1" name="studentsCode" formControlName="studentsCode" [(ngModel)]="item.studentsCode"
                         trim="blur" placeholder="Mã số sinh viên" />
@@ -46,6 +56,26 @@
                 <mat-form-field fxFlex="100%">
                     <mat-label>Tên lớp</mat-label>
                     <input rows="3" matInput tabindex="4" required name="className" formControlName="className" [(ngModel)]="item.className"
+                        trim="blur" placeholder="Mã lớp" />
+
+                </mat-form-field>
+
+            </div>
+
+            <div fxLayout="row">
+                <mat-form-field fxFlex="100%">
+                    <mat-label>Số điện thoại</mat-label>
+                    <input rows="3" matInput tabindex="4" required name="phoneNumber" formControlName="phoneNumber" [(ngModel)]="item.phoneNumber"
+                        trim="blur" placeholder="Mã lớp" />
+
+                </mat-form-field>
+
+            </div>
+
+            <div fxLayout="row">
+                <mat-form-field fxFlex="100%">
+                    <mat-label>Email</mat-label>
+                    <input rows="3" matInput tabindex="4" required name="email" formControlName="email" [(ngModel)]="item.email"
                         trim="blur" placeholder="Mã lớp" />
 
                 </mat-form-field>

@@ -47,15 +47,35 @@
             }
 
             .mat-column-name {
-                flex: 0 1 350px;
+                flex: 0 150px;
+            }
+
+            .mat-column-gender {
+                flex: 0 100px;
+                place-content: center;
+            }
+
+            .mat-column-studentsCode {
+                flex: 0 100px;
+                place-content: center;
+            }
+
+            .mat-column-className {
+                flex: 0 100px;
+                place-content: center;
             }
 
             .mat-column-majoring {
-                flex: 0 1 350px;
+                flex: 0 1 150px;
+                place-content: center;
             }
 
-            .mat-column-status {
-                flex: 0 1 100px;
+            .mat-column-phoneNumber {
+                flex: 0 1 160px;
+            }
+
+            .mat-column-email {
+                flex: 0 1 160px;
             }
 
         }

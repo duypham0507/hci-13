@@ -45,12 +45,12 @@ export class ListStudentComponent implements OnInit {
                     this.isAdmin = item.isAdmin
                 }
                 if(this.isAdmin == true) {
-                    this.displayedColumns = ["id", "name" , "studentsCode", "className", "majoring", "actions"];
+                    this.displayedColumns = ["id", "name", "gender", "studentsCode", "className", "majoring", "phoneNumber", "email", "actions"];
                 } else {
-                    this.displayedColumns = ["id", "name", "studentsCode", "className", "majoring"];
+                    this.displayedColumns = ["id", "name", "gender", "studentsCode", "className", "majoring", "phoneNumber", "email"];
                 }
             })
-            this.length = rs.length;
+            // this.length = rs.length;
             // hide admin in student list
             this.dataSource = rs.filter(item => item.username !== 'Admin');
         });
