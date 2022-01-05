@@ -89,7 +89,7 @@ export class FuseLogin2Component implements OnInit {
                 localStorage.setItem("tnthvn_pws", pws);
                 localStorage.setItem("tnthvn_save", "true");
                 localStorage.setItem("admin", item.isAdmin);
-                this.router.navigate(["/student-list"]);
+                this.router.navigate(["/subject-list"]);
             } else {
                 this.errorMessage =
                     "Đăng nhập thất bại, vui lòng kiểm tra tài khoản và mật khẩu.";
