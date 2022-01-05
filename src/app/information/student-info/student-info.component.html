@@ -14,7 +14,7 @@
                 fxLayout="row"
                 fxLayoutAlign="start center"
             >
-                <!-- <mat-icon
+                <mat-icon
                     class="logo-icon mr-16"
                     *fuseIfOnDom
                     [@animate]="{
@@ -22,17 +22,47 @@
                         params: { delay: '50ms', scale: '0.2' }
                     }"
                     >supervisor_account</mat-icon
-                > -->
+                >
                 <span
                     class="logo-text h1"
                     *fuseIfOnDom
                     [@animate]="{
                         value: '*',
                         params: { delay: '100ms', x: '-25px' }
-                    }"  >Thông tin sinh viên </span>
+                    }"
+                    >Thông tin sinh viên
+                </span>
+
                 <!-- <img class="avatar" src="{{user.avatar}}"> -->
             </div>
         </div>
-        <div></div>
+        <div  >
+            <h1>Thong tin sinh vien</h1>
+            <mat-list>
+                <mat-list-item> Ho ten </mat-list-item>
+                <mat-list-item> Nam vao truong </mat-list-item>
+                <mat-list-item> Khoa/Vien </mat-list-item>
+                <mat-list-item> Chuong trinh </mat-list-item>
+            </mat-list>
+            <mat-list>
+                <mat-list-item> Gioi tinh </mat-list-item>
+                <mat-list-item> Lop </mat-list-item>
+                <mat-list-item> Khoa hoc: K62 </mat-list-item>
+                <mat-list-item> Email </mat-list-item>
+            </mat-list>
+            <h1>Thong tin ca nhan</h1>
+            <mat-list>
+                <mat-list-item> Dan toc </mat-list-item>
+                <mat-list-item> Ton Giao </mat-list-item>
+                <mat-list-item> Dia chi </mat-list-item>
+                <mat-list-item>Ho Khau </mat-list-item>
+                <mat-list-item> So CCCD </mat-list-item>
+                <mat-list-item> So dien thoai </mat-list-item>
+            </mat-list>
+        </div>
+        <p>
+            Ghi chú:Nếu sinh viên thấy thông tin của mình chưa chính xác, xin
+            vui lòng liên hệ phòng Đào tạo để cập nhật lại.
+        </p>
     </div>
 </div>
