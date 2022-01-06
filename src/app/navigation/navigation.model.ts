@@ -8,19 +8,20 @@ export class FuseNavigationModel implements FuseNavigationModelInterface {
     constructor(model: any[]) {
         let isAdmin = localStorage.getItem("admin")
         if (isAdmin == 'true') {
+
             this.model = [
                 {
                     id: "applications",
                     translate: "NAV.Personal",
                     type: "group",
                     children: [
-                        {
-                            id: "user",
-                            translate: "Thông tin cá nhân",
-                            icon: "account_circle",
-                            type: "item",
-                            url: "/information/student-info",
-                        },
+                        // {
+                        //     id: "user",
+                        //     translate: "Thông tin cá nhân",
+                        //     icon: "account_circle",
+                        //     type: "item",
+                        //     url: "/information/student-info",
+                        // },
                         {
                             id: "user",
                             translate: "Danh sách lớp sinh viên",
@@ -28,13 +29,7 @@ export class FuseNavigationModel implements FuseNavigationModelInterface {
                             type: "item",
                             url: "/student-manager/student-list",
                         },
-                        // {
-                        //     'id'   : 'menu',
-                        //     'translate': 'Thông tin chức năng',
-                        //     'type' : 'item',
-                        //     'icon': 'apps',
-                        //     'url'  : '/information/system-info'
-                        // },
+                    
                     ],
                 },
     
@@ -50,38 +45,28 @@ export class FuseNavigationModel implements FuseNavigationModelInterface {
                             icon: "list",
                             url: "/student-manager/subject-list",
                         },
-                        // {
-                        //     id: "menu",
-                        //     translate: "Đăng kí học phần",
-                        //     type: "item",
-                        //     icon: "playlist_add_check_circle",
-                        //     url: "/information/subject-join",
-                        // },
+                        
                     ],
                 },
             ];
+
         } else {
             this.model = [
-                {
-                    'id': 'applications',
-                    'translate': 'NAV.Personal',
-                    'type': 'group',
-                    'children': [{
-                        'id': 'user',
-                        'translate': 'Thông tin cá nhân',
-                        'icon': 'account_circle',
-                        'type': 'item',
-                        'url': '/information/student-info'
-                    },
-                    // {
-                    //     'id'   : 'menu',
-                    //     'translate': 'Thông tin chức năng',
-                    //     'type' : 'item',
-                    //     'icon': 'apps',
-                    //     'url'  : '/information/system-info'
-                    // },
-                    ]
-                },
+                // {
+                //     'id': 'applications',
+                //     'translate': 'NAV.Personal',
+                //     'type': 'group',
+                //     'children': [
+                //         {
+                //         'id': 'user',
+                //         'translate': 'Thông tin cá nhân',
+                //         'icon': 'account_circle',
+                //         'type': 'item',
+                //         'url': '/information/student-info'
+                //     },
+                  
+                //     ]
+                // },
 
                 {
                     'id': 'applications',
@@ -97,7 +82,7 @@ export class FuseNavigationModel implements FuseNavigationModelInterface {
                         },
                         {
                             id: "menu",
-                            translate: "Đăng kí học phần",
+                            translate: "Đăng kí học tập",
                             type: "item",
                             icon: "playlist_add_check_circle",
                             url: "/information/subject-join",

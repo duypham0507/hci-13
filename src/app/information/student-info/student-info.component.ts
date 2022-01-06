@@ -11,6 +11,7 @@ import { StudentService } from "../service/student.service";
 @Component({
     templateUrl: "./student-info.component.html",
     styleUrls: ["./student-info.component.scss"],
+
     providers: [TranslatePipe, StudentService],
     animations: fuseAnimations,
 })
@@ -25,10 +26,19 @@ export class StudentInfoComponent implements OnInit {
         private service: StudentService,
         public dialog: MatDialog,
         public snackBar: MatSnackBar,
-        private translate: TranslatePipe
+        private translate: TranslatePipe,
+        private studentService: StudentService
     ) {}
 
     ngOnInit(): void {
+        let usr = localStorage.getItem("tnthvn_usr");
+        this.studentService.GetList().subscribe((rs) => {
+            rs.forEach((item) => {
+                if (item.username === usr) {
+                    this.isAdmin == item.isAdmin;
+                }
+            });
+        });
         this.fetch();
     }
     fetch() {
@@ -62,6 +72,4 @@ export class StudentInfoComponent implements OnInit {
             this.dataSource = rs.filter((item) => item.username !== "Admin");
         });
     }
-  
-    
 }
