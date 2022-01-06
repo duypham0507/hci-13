@@ -29,15 +29,6 @@ export class FuseNavigationModel implements FuseNavigationModelInterface {
                             type: "item",
                             url: "/student-manager/student-list",
                         },
-                    
-                    ],
-                },
-    
-                {
-                    id: "applications",
-                    translate: "NAV.System",
-                    type: "group",
-                    children: [
                         {
                             id: "menu",
                             translate: "Danh mục học phần",
@@ -45,9 +36,25 @@ export class FuseNavigationModel implements FuseNavigationModelInterface {
                             icon: "list",
                             url: "/student-manager/subject-list",
                         },
-                        
+                    
                     ],
                 },
+    
+                // {
+                //     id: "applications",
+                //     translate: "NAV.System",
+                //     type: "group",
+                //     children: [
+                //         {
+                //             id: "menu",
+                //             translate: "Danh mục học phần",
+                //             type: "item",
+                //             icon: "list",
+                //             url: "/student-manager/subject-list",
+                //         },
+                        
+                //     ],
+                // },
             ];
 
         } else {
