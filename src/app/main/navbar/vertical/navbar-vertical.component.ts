@@ -1,48 +1,58 @@
-import { Component, ElementRef, HostBinding, HostListener, Input, OnDestroy, OnInit, Renderer2, ViewChild, ViewEncapsulation } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { FuseMatchMedia } from '../../../core/services/match-media.service';
-import { FuseNavbarVerticalService } from './navbar-vertical.service';
-import { FuseMainComponent } from '../../main.component';
-import { NavigationEnd, Router } from '@angular/router';
-import { FuseNavigationService } from '../../../core/components/navigation/navigation.service';
-import { FusePerfectScrollbarDirective } from '../../../core/directives/fuse-perfect-scrollbar/fuse-perfect-scrollbar.directive';
-import { animate, AnimationBuilder, AnimationPlayer, style } from '@angular/animations';
-import { MediaObserver } from '@angular/flex-layout';
+import {
+    Component,
+    ElementRef,
+    HostBinding,
+    HostListener,
+    Input,
+    OnDestroy,
+    OnInit,
+    Renderer2,
+    ViewChild,
+    ViewEncapsulation,
+} from "@angular/core";
+import { Subscription } from "rxjs";
+import { FuseMatchMedia } from "../../../core/services/match-media.service";
+import { FuseNavbarVerticalService } from "./navbar-vertical.service";
+import { FuseMainComponent } from "../../main.component";
+import { NavigationEnd, Router } from "@angular/router";
+import { FuseNavigationService } from "../../../core/components/navigation/navigation.service";
+import { FusePerfectScrollbarDirective } from "../../../core/directives/fuse-perfect-scrollbar/fuse-perfect-scrollbar.directive";
+import {
+    animate,
+    AnimationBuilder,
+    AnimationPlayer,
+    style,
+} from "@angular/animations";
+import { MediaObserver } from "@angular/flex-layout";
 
 @Component({
-    selector     : 'fuse-navbar-vertical',
-    templateUrl  : './navbar-vertical.component.html',
-    styleUrls    : ['./navbar-vertical.component.scss'],
-    encapsulation: ViewEncapsulation.None
+    selector: "fuse-navbar-vertical",
+    templateUrl: "./navbar-vertical.component.html",
+    styleUrls: ["./navbar-vertical.component.scss"],
+    encapsulation: ViewEncapsulation.None,
 })
-export class FuseNavbarVerticalComponent implements OnInit, OnDestroy
-{
+export class FuseNavbarVerticalComponent implements OnInit, OnDestroy {
     private _backdropElement: HTMLElement | null = null;
     private _folded = false;
 
-    @HostBinding('class.close') isClosed: boolean;
-    @HostBinding('class.folded') isFoldedActive: boolean;
-    @HostBinding('class.folded-open') isFoldedOpen: boolean;
-    @HostBinding('class.initialized') initialized: boolean;
+    @HostBinding("class.close") isClosed: boolean;
+    @HostBinding("class.folded") isFoldedActive: boolean;
+    @HostBinding("class.folded-open") isFoldedOpen: boolean;
+    @HostBinding("class.initialized") initialized: boolean;
     @ViewChild(FusePerfectScrollbarDirective) fusePerfectScrollbarDirective;
 
     @Input()
-    set folded(value: boolean)
-    {
+    set folded(value: boolean) {
         this._folded = value;
 
-        if ( this._folded )
-        {
+        if (this._folded) {
             this.activateFolded();
-        }
-        else
-        {
+        } else {
             this.deActivateFolded();
         }
     }
 
-    get folded(): boolean
-    {
+    get folded(): boolean {
         return this._folded;
     }
 
@@ -62,8 +72,7 @@ export class FuseNavbarVerticalComponent implements OnInit, OnDestroy
         private _elementRef: ElementRef,
         private animationBuilder: AnimationBuilder,
         public media: MediaObserver
-    )
-    {
+    ) {
         navBarService.setNavBar(this);
 
         this.navigationServiceWatcher =
@@ -73,41 +82,32 @@ export class FuseNavbarVerticalComponent implements OnInit, OnDestroy
                 }, 310);
             });
 
-        this.matchMediaWatcher =
-            this.fuseMatchMedia.onMediaChange
-                .subscribe((mediaStep) => {
-                    setTimeout(() => {
-
-                        if ( this.media.isActive('lt-lg') )
-                        {
-                            this.closeBar();
-                            this.deActivateFolded();
-                        }
-                        else
-                        {
-                            this.openBar();
-                            this._detachBackdrop();
-                        }
-                    });
-                });
-
-        router.events.subscribe(
-            (event) => {
-                if ( event instanceof NavigationEnd )
-                {
-                    if ( this.media.isActive('lt-lg') )
-                    {
-                        setTimeout(() => {
-                            this.closeBar();
-                        });
+        this.matchMediaWatcher = this.fuseMatchMedia.onMediaChange.subscribe(
+            (mediaStep) => {
+                setTimeout(() => {
+                    if (this.media.isActive("lt-lg")) {
+                        this.closeBar();
+                        this.deActivateFolded();
+                    } else {
+                        this.openBar();
+                        this._detachBackdrop();
                     }
-                }
+                });
             }
         );
+
+        router.events.subscribe((event) => {
+            if (event instanceof NavigationEnd) {
+                if (this.media.isActive("lt-lg")) {
+                    setTimeout(() => {
+                        this.closeBar();
+                    });
+                }
+            }
+        });
     }
 
-    ngOnInit()
-    {
+    ngOnInit() {
         this.isClosed = false;
         this.isFoldedActive = this._folded;
         this.isFoldedOpen = false;
@@ -118,50 +118,38 @@ export class FuseNavbarVerticalComponent implements OnInit, OnDestroy
             this.initialized = true;
         });
 
-        if ( this.media.isActive('lt-lg') )
-        {
+        if (this.media.isActive("lt-lg")) {
             this.closeBar();
             this.deActivateFolded();
-        }
-        else
-        {
-            if ( !this._folded )
-            {
+        } else {
+            if (!this._folded) {
                 this.deActivateFolded();
-            }
-            else
-            {
+            } else {
                 this.activateFolded();
             }
         }
     }
 
-    ngOnDestroy()
-    {
+    ngOnDestroy() {
         clearTimeout(this.fusePerfectScrollbarUpdateTimeout);
         this.matchMediaWatcher.unsubscribe();
         this.navigationServiceWatcher.unsubscribe();
     }
 
-    openBar()
-    {
-        if ( !this.isClosed )
-        {
+    openBar() {
+        if (!this.isClosed) {
             return;
         }
 
         this.isClosed = false;
         this.updateCssClasses();
-        if ( this.media.isActive('lt-lg') )
-        {
+        if (this.media.isActive("lt-lg")) {
             this._attachBackdrop();
         }
     }
 
-    closeBar()
-    {
-        if ( this.isClosed )
-        {
+    closeBar() {
+        if (this.isClosed) {
             return;
         }
 
@@ -170,107 +158,92 @@ export class FuseNavbarVerticalComponent implements OnInit, OnDestroy
         this._detachBackdrop();
     }
 
-    toggleBar()
-    {
-        if ( this.isClosed )
-        {
+    toggleBar() {
+        if (this.isClosed) {
             this.openBar();
-        }
-        else
-        {
+        } else {
             this.closeBar();
         }
     }
 
-    toggleFold()
-    {
-        if ( !this.isFoldedActive )
-        {
+    toggleFold() {
+        if (!this.isFoldedActive) {
             this.activateFolded();
-        }
-        else
-        {
+        } else {
             this.deActivateFolded();
         }
     }
 
-    activateFolded()
-    {
+    activateFolded() {
         this.isFoldedActive = true;
-        this.fuseMainComponent.addClass('fuse-nav-bar-folded');
+        this.fuseMainComponent.addClass("fuse-nav-bar-folded");
         this.isFoldedOpen = false;
     }
 
-    deActivateFolded()
-    {
+    deActivateFolded() {
         this.isFoldedActive = false;
-        this.fuseMainComponent.removeClass('fuse-nav-bar-folded');
+        this.fuseMainComponent.removeClass("fuse-nav-bar-folded");
         this.isFoldedOpen = false;
     }
 
-    @HostListener('mouseenter')
-    onMouseEnter()
-    {
+    @HostListener("mouseenter")
+    onMouseEnter() {
         this.isFoldedOpen = true;
     }
 
-    @HostListener('mouseleave')
-    onMouseLeave()
-    {
+    @HostListener("mouseleave")
+    onMouseLeave() {
         this.isFoldedOpen = false;
     }
 
-    updateCssClasses()
-    {
-        if ( !this.isClosed )
-        {
-            this.fuseMainComponent.addClass('fuse-navbar-opened');
-            this.fuseMainComponent.removeClass('fuse-navbar-closed');
-        }
-        else
-        {
-            this.fuseMainComponent.addClass('fuse-navbar-closed');
-            this.fuseMainComponent.removeClass('fuse-navbar-opened');
+    updateCssClasses() {
+        if (!this.isClosed) {
+            this.fuseMainComponent.addClass("fuse-navbar-opened");
+            this.fuseMainComponent.removeClass("fuse-navbar-closed");
+        } else {
+            this.fuseMainComponent.addClass("fuse-navbar-closed");
+            this.fuseMainComponent.removeClass("fuse-navbar-opened");
         }
     }
 
-    private _attachBackdrop()
-    {
-        this._backdropElement = this._renderer.createElement('div');
-        this._backdropElement.classList.add('fuse-navbar-backdrop');
+    private _attachBackdrop() {
+        this._backdropElement = this._renderer.createElement("div");
+        this._backdropElement.classList.add("fuse-navbar-backdrop");
 
-        this._renderer.appendChild(this._elementRef.nativeElement.parentElement, this._backdropElement);
+        this._renderer.appendChild(
+            this._elementRef.nativeElement.parentElement,
+            this._backdropElement
+        );
 
-        this.player =
-            this.animationBuilder
-                .build([
-                    animate('400ms ease', style({opacity: 1}))
-                ]).create(this._backdropElement);
+        this.player = this.animationBuilder
+            .build([animate("400ms ease", style({ opacity: 1 }))])
+            .create(this._backdropElement);
 
         this.player.play();
 
-        this._backdropElement.addEventListener('click', () => {
-                this.closeBar();
-            }
-        );
+        this._backdropElement.addEventListener("click", () => {
+            this.closeBar();
+        });
     }
 
-    private _detachBackdrop()
-    {
-        if ( this._backdropElement )
-        {
-            this.player =
-                this.animationBuilder
-                    .build([
-                        animate('400ms cubic-bezier(.25,.8,.25,1)', style({opacity: 0}))
-                    ]).create(this._backdropElement);
+    private _detachBackdrop() {
+        if (this._backdropElement) {
+            this.player = this.animationBuilder
+                .build([
+                    animate(
+                        "400ms cubic-bezier(.25,.8,.25,1)",
+                        style({ opacity: 0 })
+                    ),
+                ])
+                .create(this._backdropElement);
 
             this.player.play();
 
             this.player.onDone(() => {
-                if ( this._backdropElement )
-                {
-                    this._backdropElement.parentNode.removeChild(this._backdropElement);
+                if (this._backdropElement) {
+                    this._backdropElement.parentNode.removeChild(
+                        this._backdropElement
+                    );
                     this._backdropElement = null;
                 }
             });

@@ -35,7 +35,7 @@ export class StudentInfoComponent implements OnInit {
         this.studentService.GetList().subscribe((rs) => {
             rs.forEach((item) => {
                 if (item.username === usr) {
-                    this.isAdmin == item.isAdmin;
+                this.isAdmin==item.isAdmin;
                 }
             });
         });
