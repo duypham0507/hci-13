@@ -34,6 +34,7 @@ import { MediaObserver } from "@angular/flex-layout";
 export class FuseNavbarVerticalComponent implements OnInit, OnDestroy {
     private _backdropElement: HTMLElement | null = null;
     private _folded = false;
+     isAdmin = localStorage.getItem("admin");
 
     @HostBinding("class.close") isClosed: boolean;
     @HostBinding("class.folded") isFoldedActive: boolean;

@@ -26,7 +26,7 @@
 <div class="navbar-content" fusePerfectScrollbar>
 
     <p></p>
-    <div fxLayout="column" fxLayoutAlign="space-evenly start">
+    <div fxLayout="column" fxLayoutAlign="space-evenly start" *ngIf="!isAdmin">
         <mat-list-item> . Họ và tên: Nguyễn Minh Quân </mat-list-item>
         <mat-list-item> . MSSV: 20176050 </mat-list-item>
         <mat-list-item> . Lớp: LTU16A </mat-list-item>
