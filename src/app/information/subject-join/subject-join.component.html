@@ -8,9 +8,9 @@
                 <mat-icon class="logo-icon mr-16" *fuseIfOnDom
                     [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">supervisor_account</mat-icon>
                 <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
-                    Học phần đã đăng kí</span>
+                    Trang đăng kí sinh viên</span>
             </div>
-<!-- 
+            <!-- 
             <div id="searchBox" class="search-input-wrapper mx-12 m-md-0" fxFlex="1 0 auto" fxLayout="row"
                 fxLayoutAlign="start center">
                 <div>
@@ -29,69 +29,90 @@
             <button mat-raised-button class="add-product-button mat-white-bg my-12 mt-sm-0" (click)="add()">
                 <span>{{'Đăng kí học phần' | translate}}</span>
             </button>
-        
+
         </div>
 
-        <div class="content mat-white-bg">
-            <mat-table class="subject-table" fxFlex #table [dataSource]="dataSource" matSort
-                [@animateStagger]="{value:'50'}" fusePerfectScrollbar>
-                <ng-container matColumnDef="id">
-                    <mat-header-cell *matHeaderCellDef>{{'Common.No' | translate}}</mat-header-cell>
-                    <mat-cell *matCellDef="let item; let i = index;">
-                        <p class="text-truncate mr-8">{{i + 1}}</p>
-                    </mat-cell>
-                </ng-container>
+        <div class="content-card mat-white-bg" fxLayout="row">
+            <div fxLayout="column" fxFlex="29%" class="content-item mr">
+                <div class="detail-header" fxLayoutAlign="start center">
+                    <span>Thông tin sinh viên</span>&nbsp;
+                    <!-- <span class="role-name-title">{{item.name}}</span> -->
+                </div>
+                <div class="student-info" fxLayout="column" fxLayoutAlign="space-evenly start" *ngIf="!isAdmin" style="margin:10px">
+                    <span> . Họ tên SV: {{item.name}} </span>
+                    <span> . MSSV: {{item.studentsCode}} </span>
+                    <span> . Lớp: {{item.className}} </span>
+                    <span>
+                        . Chương trình: Công nghệ thông tin và truyền thông
+                    </span>
+                    <span> . Số tín chỉ đăng ký tối đa: {{total}}/24 </span>
+                </div>
+            </div>
+            <div fxFlex="1%"></div>
+            <div fxLayout="column" fxFlex="70%" class="content content-item">
+                <div class="detail-header" fxLayoutAlign="start center">
+                    <span>Học phần đã đăng kí</span>&nbsp;
+                    <!-- <span class="role-name-title" *ngIf="roleItem.name">{{roleItem.name}}</span>                     -->
+                </div>
+                <mat-table class="subject-table" fxFlex #table [dataSource]="dataSource" matSort
+                    [@animateStagger]="{value:'50'}" fusePerfectScrollbar>
+                    <ng-container matColumnDef="id">
+                        <mat-header-cell *matHeaderCellDef>{{'Common.No' | translate}}</mat-header-cell>
+                        <mat-cell *matCellDef="let item; let i = index;">
+                            <p class="text-truncate mr-8">{{i + 1}}</p>
+                        </mat-cell>
+                    </ng-container>
 
-                <ng-container matColumnDef="semester">
-                    <mat-header-cell *matHeaderCellDef>Học kì</mat-header-cell>
-                    <mat-cell *matCellDef="let item">
-                        <p class="text-truncate mr-8" matTooltip="{{item.semester}}">{{item.semester}}</p>
-                    </mat-cell>
-                </ng-container>
+                    <ng-container matColumnDef="semester">
+                        <mat-header-cell *matHeaderCellDef>Học kì</mat-header-cell>
+                        <mat-cell *matCellDef="let item">
+                            <p class="text-truncate mr-8" matTooltip="{{item.semester}}">{{item.semester}}</p>
+                        </mat-cell>
+                    </ng-container>
 
-                <ng-container matColumnDef="subjectCode">
-                    <mat-header-cell *matHeaderCellDef>Mã học phần</mat-header-cell>
-                    <mat-cell *matCellDef="let item">
-                        <p class="text-truncate mr-8" matTooltip="{{item.subjectCode}}">{{item.subjectCode}}</p>
-                    </mat-cell>
-                </ng-container>
+                    <ng-container matColumnDef="subjectCode">
+                        <mat-header-cell *matHeaderCellDef>Mã học phần</mat-header-cell>
+                        <mat-cell *matCellDef="let item">
+                            <p class="text-truncate mr-8" matTooltip="{{item.subjectCode}}">{{item.subjectCode}}</p>
+                        </mat-cell>
+                    </ng-container>
 
-                <ng-container matColumnDef="subjectName">
-                    <mat-header-cell *matHeaderCellDef>Tên học phần</mat-header-cell>
-                    <mat-cell *matCellDef="let item">
-                        <p class="text-truncate mr-8" matTooltip="{{item.subjectName}}">{{item.subjectName}}</p>
-                    </mat-cell>
-                </ng-container>
+                    <ng-container matColumnDef="subjectName">
+                        <mat-header-cell *matHeaderCellDef>Tên học phần</mat-header-cell>
+                        <mat-cell *matCellDef="let item">
+                            <p class="text-truncate mr-8" matTooltip="{{item.subjectName}}">{{item.subjectName}}</p>
+                        </mat-cell>
+                    </ng-container>
 
-                <ng-container matColumnDef="nameEnglish">
-                    <mat-header-cell *matHeaderCellDef>Tên tiếng anh</mat-header-cell>
-                    <mat-cell *matCellDef="let item">
-                        <p class="text-truncate mr-8" matTooltip="{{item.nameEnglish}}">{{item.nameEnglish}}</p>
-                    </mat-cell>
-                </ng-container>
+                    <ng-container matColumnDef="nameEnglish">
+                        <mat-header-cell *matHeaderCellDef>Tên tiếng anh</mat-header-cell>
+                        <mat-cell *matCellDef="let item">
+                            <p class="text-truncate mr-8" matTooltip="{{item.nameEnglish}}">{{item.nameEnglish}}</p>
+                        </mat-cell>
+                    </ng-container>
 
-                <ng-container matColumnDef="classcode">
-                    <mat-header-cell *matHeaderCellDef>Mã lớp</mat-header-cell>
-                    <mat-cell *matCellDef="let item">
-                        <p class="text-truncate mr-8" matTooltip="{{item.classcode}}">{{item.classcode}}</p>
-                    </mat-cell>
-                </ng-container>
+                    <ng-container matColumnDef="classcode">
+                        <mat-header-cell *matHeaderCellDef>Mã lớp</mat-header-cell>
+                        <mat-cell *matCellDef="let item">
+                            <p class="text-truncate mr-8" matTooltip="{{item.classcode}}">{{item.classcode}}</p>
+                        </mat-cell>
+                    </ng-container>
 
-                <ng-container matColumnDef="numberCredit">
-                    <mat-header-cell *matHeaderCellDef>Số tín chỉ</mat-header-cell>
-                    <mat-cell *matCellDef="let item">
-                        <p class="text-truncate mr-8" matTooltip="{{item.numberCredit}}">{{item.numberCredit}}</p>
-                    </mat-cell>
-                </ng-container>
+                    <ng-container matColumnDef="numberCredit">
+                        <mat-header-cell *matHeaderCellDef>Số tín chỉ</mat-header-cell>
+                        <mat-cell *matCellDef="let item">
+                            <p class="text-truncate mr-8" matTooltip="{{item.numberCredit}}">{{item.numberCredit}}</p>
+                        </mat-cell>
+                    </ng-container>
 
-                <!-- <ng-container matColumnDef="totalScore">
+                    <!-- <ng-container matColumnDef="totalScore">
                     <mat-header-cell *matHeaderCellDef>Hệ số</mat-header-cell>
                     <mat-cell *matCellDef="let item">
                         <p class="text-truncate mr-8" matTooltip="{{item.totalScore}}">{{item.totalScore}}</p>
                     </mat-cell>
                 </ng-container> -->
 
-                <!-- <ng-container matColumnDef="status">
+                    <!-- <ng-container matColumnDef="status">
                     <mat-header-cell *matHeaderCellDef>Trạng thái</mat-header-cell>
                     <mat-cell *cdkCellDef="let item">
                         <mat-cell *matCellDef="let item">
@@ -101,26 +122,26 @@
                     </mat-cell>
                 </ng-container> -->
 
-                <ng-container matColumnDef="actions">
-                    <mat-header-cell *matHeaderCellDef>Hành động</mat-header-cell>
-                    <mat-cell *matCellDef="let item">
-                        <button matTooltip="Xóa lớp đã đăng kí" class="btn-permission" (click)="delete(item)">
-                            <mat-icon>delete</mat-icon>
-                        </button>
+                    <ng-container matColumnDef="actions">
+                        <mat-header-cell *matHeaderCellDef>Hành động</mat-header-cell>
+                        <mat-cell *matCellDef="let item">
+                            <button matTooltip="Xóa lớp đã đăng kí" class="btn-permission" (click)="delete(item)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
 
-                    </mat-cell>
-                </ng-container>
+                        </mat-cell>
+                    </ng-container>
 
-                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 
-                <mat-row *matRowDef="let item; columns: displayedColumns;" class="item" [routerLink]="">
-                </mat-row>
+                    <mat-row *matRowDef="let item; columns: displayedColumns;" class="item" [routerLink]="">
+                    </mat-row>
 
-            </mat-table>
-            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
-                aria-label="Select page of periodic elements">
-            </mat-paginator>
-          
+                </mat-table>
+                <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+                    aria-label="Select page of periodic elements">
+                </mat-paginator>
+            </div>
         </div>
     </div>
 </div>

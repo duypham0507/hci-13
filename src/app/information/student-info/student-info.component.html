@@ -1,4 +1,4 @@
-<div class="page-layout carded fullwidth" fusePerfectScrollbar>
+<!-- <div class="page-layout carded fullwidth" fusePerfectScrollbar *ngIf="!isAdmin">
     <div class="top-bg mat-accent-bg header-height"></div>
 
     <div class="center">
@@ -33,10 +33,10 @@
                     >Thông tin cá nhân
                 </span>
 
-                <!-- <img class="avatar" src="{{user.avatar}}"> -->
+                <img class="avatar" src="{{user.avatar}}">
             </div>
         </div>
-        <div *ngIf="!isAdmin">
+        <div>
             <h1>Thông tin sinh viên</h1>
             <div fxLayout="row" fxLayoutAlign="space-between center">
                 <mat-list>
@@ -72,4 +72,10 @@
         Ghi chú:Nếu sinh viên thấy thông tin của mình chưa chính xác, xin vui
         lòng liên hệ phòng Đào tạo để cập nhật lại.
     </p>
+</div> -->
+<div class="set-admin" *ngIf="isAdmin">
+    <div class="ui-admin" fxFlex fxLayout="column" fxLayoutAlign="center center">
+        <img class="avatar" src="assets/images/avatars/profile.jpg">
+        <span>Xin chào Admin!</span>
+    </div>
 </div>

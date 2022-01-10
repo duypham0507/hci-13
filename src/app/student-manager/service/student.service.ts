@@ -15,6 +15,10 @@ export class StudentService {
         return this.http.get(this.studentApi);
     }
 
+    GetById(id: number): Observable<any> {
+        return this.http.get(this.studentApi + id);
+    }
+
     getMyProfile() {
         var me = this;
         return this.http.get(this.studentApi).toPromise().then(res => {

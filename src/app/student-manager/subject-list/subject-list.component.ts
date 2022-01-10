@@ -56,27 +56,14 @@ export class SubjectListComponent implements OnInit {
         });
     }
 
-    add() {
-        let dialogRef = this.dialog.open(AddSubjectComponent, {
-            panelClass: "actions-list-subject-dialog",
-            data: {
-                title: "Thêm sinh viên",
-            },
-        });
-
-        dialogRef.afterClosed().subscribe((result) => {
-            if (result) {
-                this.fetch();
-            }
-        });
-    }
+    
 
     edit(item: any) {
         let dialogRef = this.dialog.open(AddSubjectComponent, {
             panelClass: "actions-list-subject-dialog",
             data: {
                 item: item,
-                title: "Sửa thông tin sinh viên",
+                title: "Sửa thông tin môn học",
             },
         });
 

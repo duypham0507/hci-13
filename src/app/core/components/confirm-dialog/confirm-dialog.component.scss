@@ -1,0 +1,22 @@
+
+:host {
+    .dialog-content-wrapper .mat-dialog-title {
+        height: 50px !important;
+    }
+
+    .mat-dialog-container {
+        padding: 0 !important;
+    }
+
+    .dialog-content {
+        padding-bottom: 12px;
+        max-width: 65vw;
+        max-height: 65vh;
+        margin: 0;
+    }
+
+    .mat-toolbar {
+        padding: 0 4px 0 16px;
+    }
+}
+

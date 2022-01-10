@@ -105,7 +105,7 @@ export const locale = {
             'BlockAdSms': 'Từ chối nhận tin quảng cáo',
             'Policy': 'Chính sách bảo mật',
             'Admin': 'Quản trị',
-            'System': 'Đăng ký học tập ',
+            'System': 'Chức năng',
             'Personal': 'Quản trị ',
         },
         

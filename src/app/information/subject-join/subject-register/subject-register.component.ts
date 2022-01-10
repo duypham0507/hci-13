@@ -19,6 +19,7 @@ import { filter } from 'rxjs/operators';
 })
 export class SubjectRegisterComponent implements OnInit {
     keyword: string;
+    total: number = 0;
     item: any = {};
     listData:any = [];
     selectedItem: any;
@@ -35,9 +36,7 @@ export class SubjectRegisterComponent implements OnInit {
         private translate: TranslatePipe,
         public dialogRef: MatDialogRef<SubjectRegisterComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any,
-    ) { }
-
-    ngOnInit(): void {
+    ) {
         let usr = localStorage.getItem("tnthvn_usr")
         this.studentService.GetList().subscribe((rs) => {
             rs.forEach(item => {
@@ -46,7 +45,11 @@ export class SubjectRegisterComponent implements OnInit {
                 }
             })
         });
+     }
+
+    ngOnInit(): void {
         this.fetch();
+        this. getTotal();
     }
 
     // search(keyCode: Number) {
@@ -55,6 +58,16 @@ export class SubjectRegisterComponent implements OnInit {
     //         this.fetch();
     //     }
     // }
+
+    getTotal(){
+        this.subjectJoinService.GetList().subscribe((rs) => {
+            rs.forEach(item => {
+                if(item.studentId == this.studentId){
+                    this.total = this.total + item.numberCredit;
+                }
+            })
+        });
+    }
 
     search() {
         this.service.Search(this.keyword).subscribe((res) => {
@@ -105,7 +118,6 @@ export class SubjectRegisterComponent implements OnInit {
     }
 
     async register() {
-        
         if (this.selectedItem == undefined) {
             this.snackBar.open(this.translate.transform('Bạn chưa chọn học phần'), 'OK', {
                 verticalPosition: 'top',
@@ -120,7 +132,23 @@ export class SubjectRegisterComponent implements OnInit {
                 });
                 this.checkduplicate = false;
                 return;
-            }else{
+            } else if(this.item.numberCredit >= 3 && this.total >= 22) {
+                this.snackBar.open(this.translate.transform('Số tín chỉ đăng kí trong kì không được vượt quá 24 tín'), 'OK', {
+                    verticalPosition: 'top',
+                    duration: 1200
+                });
+            } else if(this.item.numberCredit >= 2 && this.total >= 23) {
+                this.snackBar.open(this.translate.transform('Số tín chỉ đăng kí trong kì không được vượt quá 24 tín'), 'OK', {
+                    verticalPosition: 'top',
+                    duration: 1200
+                });
+            } else if(this.item.numberCredit >= 1 && this.total == 24) {
+                this.snackBar.open(this.translate.transform('Bạn đã đăng kí tối đa 24 tín chỉ'), 'OK', {
+                    verticalPosition: 'top',
+                    duration: 1200
+                });
+            } 
+            else{
                 this.item.studentId = this.studentId;
                 this.item.semester = 20211;
                 this.subjectJoinService.Add(this.item).subscribe(res => {

@@ -17,8 +17,11 @@ import { FuseConfirmDialogComponent } from 'app/core/components/confirm-dialog/c
     animations: fuseAnimations,
 })
 export class SubjectJoinComponent implements OnInit {
+    item: any = {};
     keyword: string;
+    total: number = 0;
     studentId: any;
+    isAdmin: boolean = false;
     subjectCount: any = [];
     displayedColumns = ["id", "semester", "subjectCode", "subjectName", "nameEnglish", "classcode", "numberCredit", "actions"];
     dataSource: MatTableDataSource<any>;
@@ -29,24 +32,31 @@ export class SubjectJoinComponent implements OnInit {
         public snackBar: MatSnackBar,
         private translate: TranslatePipe
     ) {
-
-     }
-
-     ngOnInit(): void {
         let usr = localStorage.getItem("tnthvn_usr");
         this.studentService.GetList().subscribe((rs) => {
             rs.forEach(item => {
-                if(item.username === usr) {
-                    this.studentId = item.id
+                if (item.username === usr) {
+                    this.item = item;
+                    this.studentId = item.id;
+                    this.isAdmin = item.isAdmin
                 }
             })
         });
+    }
+
+    ngOnInit(): void {
         this.fetch();
     }
 
-    fetch() { 
+    fetch() {
         this.service.GetList().subscribe((rs) => {
-            this.dataSource = rs.filter(x => x.studentId == this.studentId);
+            let data = rs.filter(x => x.studentId == this.studentId);
+            this.dataSource = data;
+            data.forEach(item => {
+                if(item.studentId == this.studentId){
+                    this.total += item.numberCredit;
+                }
+            })
         });
     }
 
@@ -60,46 +70,48 @@ export class SubjectJoinComponent implements OnInit {
 
         dialogRef.afterClosed().subscribe((result) => {
             if (result) {
+                this.total = 0;
                 this.fetch();
             }
         });
     }
 
-    delete(item:any){
+    delete(item: any) {
         let confirmDialogRef = this.dialog.open(FuseConfirmDialogComponent, {
             disableClose: false,
         });
 
         confirmDialogRef.componentInstance.confirmMessage =
             "Common.Msg.DeleteConfirm";
-            confirmDialogRef.afterClosed().subscribe((result) => {
-                if (result) {
-                    this.service.Delete(item.id).subscribe((rs) => {
-                        if(rs){
-                            this.snackBar.open(
-                                this.translate.transform(
-                                    "Common.Msg.DeleteSuccess"
-                                ),
-                                "OK",
-                                {
-                                    verticalPosition: "top",
-                                    duration: 2000,
-                                }
-                            );
-                            this.fetch();
-                        }
-                        else {
-                            this.snackBar.open(
-                                this.translate.transform("Common.Msg.DeleteError"),
-                                "OK",
-                                {
-                                    verticalPosition: "top",
-                                    duration: 2000,
-                                }
-                            );
-                        }
-                    });
-                }
-            });
+        confirmDialogRef.afterClosed().subscribe((result) => {
+            if (result) {
+                this.service.Delete(item.id).subscribe((rs) => {
+                    if (rs) {
+                        this.snackBar.open(
+                            this.translate.transform(
+                                "Common.Msg.DeleteSuccess"
+                            ),
+                            "OK",
+                            {
+                                verticalPosition: "top",
+                                duration: 2000,
+                            }
+                        );
+                        this.total = 0;
+                        this.fetch();
+                    }
+                    else {
+                        this.snackBar.open(
+                            this.translate.transform("Common.Msg.DeleteError"),
+                            "OK",
+                            {
+                                verticalPosition: "top",
+                                duration: 2000,
+                            }
+                        );
+                    }
+                });
+            }
+        });
     }
 }

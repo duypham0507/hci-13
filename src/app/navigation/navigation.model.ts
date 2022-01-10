@@ -81,19 +81,19 @@ export class FuseNavigationModel implements FuseNavigationModelInterface {
                     'type': 'group',
                     'children': [
                         {
+                            id: "menu",
+                            translate: "Đăng kí học tập",
+                            type: "item",
+                            icon: "playlist_add_check_circle",
+                            url: "/information/subject-join",
+                        },
+                        {
                             'id': 'menu',
                             'translate': 'Danh mục học phần',
                             'type': 'item',
                             'icon': 'list',
                             'url': '/student-manager/subject-list'
                         },
-                        {
-                            id: "menu",
-                            translate: "Đăng kí học tập",
-                            type: "item",
-                            icon: "playlist_add_check_circle",
-                            url: "/information/subject-join",
-                        }
                     ]
                 },
             ];
